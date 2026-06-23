@@ -5,14 +5,16 @@ from pydantic_settings import BaseSettings,SettingsConfigDict
 from pathlib import Path
 
 class Settings(BaseSettings):
-    databricks_server_hostname: str = Field(default="DATABRICKS_HOST")
+    databricks_server_hostname: str = Field(default="")
     databricks_token:Optional[SecretStr] = Field(default=None)
-    databricks_http_path:str        = Field(default="DATABRICKS_TOKEN")
+    databricks_http_path:str        = Field(default="")
 
     ###################################################
-    data_parquet_output:Path  = Path("data/")
-    salida_default:Path       = Path("data/","sentimientos_pbi.parquet")
-    datos_default:Path        = Path("data/","emilia_dashboard_base.parquet")
+    base_path:Path = Path.cwd()
+    data_path:Path = base_path / 'data'
+    data_parquet_output:Path  = data_path
+    salida_default:Path       = data_path / "sentimientos_pbi.parquet"
+    datos_default:Path        = data_path / "emilia_dashboard_base.parquet"
     ###################################################
 
     tabla_dashboard:str  = Field(default="")

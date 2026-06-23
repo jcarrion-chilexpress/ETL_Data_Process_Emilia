@@ -3,11 +3,11 @@ from src.utils.utils import leer_parquet
 from src.load.export_sentimientos_pbi import orquestador
 
 def main():
-    #orquestador()
+    orquestador()
     archivo = "sentimientos_pbi.parquet"
     parquet_file =leer_parquet(archivo)
 
-    print(type(parquet_file))
+    print(parquet_file)
 
 
 if __name__ == "__main__":
@@ -15,4 +15,3 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt:
         sys.exit(130)
-
