@@ -12,11 +12,11 @@ import pandas as pd
 from pathlib import Path
 #####################################
 from src.load.emilia_dashboard_sentimientos import pdf_a_dashboard
-from config.config import settings
+from config.config import get_settings
 
 ## ------------------------------- ##
-SALIDA_DEFAULT= settings.salida_default
-DATOS_DEFAULT =settings.datos_default
+SALIDA_DEFAULT= get_settings().salida_default
+DATOS_DEFAULT =get_settings().datos_default
 #####################################
 
 def cargar_datos_archivo(ruta: Path) -> pd.DataFrame:

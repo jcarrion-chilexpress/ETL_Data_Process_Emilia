@@ -2,7 +2,7 @@
 import logging
 import logging.handlers
 from pathlib import Path
-from config.config import settings
+from config.config import get_settings
 
 
 ## -------------------------------------------------- ##
@@ -10,7 +10,7 @@ from config.config import settings
 class registroLOG:
     @staticmethod
     def setup_logging(
-        log_name: str | None = settings.archivo_log,
+        log_name: str | None = get_settings().archivo_log,
         log_level=logging.INFO
     ):
         log_name = log_name or "app"

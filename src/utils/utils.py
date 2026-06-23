@@ -1,6 +1,6 @@
 from pathlib import Path
 import pandas as pd
-from config.config import settings
+from config.config import get_settings
 from config.log_config import logger
 
 def leer_parquet(file: str | Path) -> pd.DataFrame:
@@ -15,7 +15,7 @@ def leer_parquet(file: str | Path) -> pd.DataFrame:
     -------
     pd.DataFrame
     """
-    ruta = Path(settings.data_parquet_output,file)
+    ruta = Path(get_settings().data_path,file)
 
     logger.info(f'Leyendo archivo {ruta}')
 

@@ -11,12 +11,12 @@ from decimal import Decimal
 from pathlib import Path
 import requests
 
-from config.config import settings
+from config.config import get_settings
 from config.log_config import logger
 
 # Ruta en Workspace (según ejecuciones previas del notebook en Databricks)
-DEFAULT_NOTEBOOK_PATH = settings.default_notebook_path
-TABLA_DASHBOARD = settings.tabla_dashboard
+DEFAULT_NOTEBOOK_PATH = get_settings().default_notebook_path
+TABLA_DASHBOARD = get_settings().tabla_dashboard
 
 def _env(name: str) -> str:
     return (os.getenv(name) or "").strip()
