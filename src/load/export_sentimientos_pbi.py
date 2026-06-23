@@ -14,7 +14,7 @@ from pathlib import Path
 from src.load.emilia_dashboard_sentimientos import pdf_a_dashboard
 from config.config import get_settings
 from config.log_config import logger
-
+from src.utils.utils import crear_directorios
 ## ------------------------------- ##
 SALIDA_DEFAULT= get_settings().salida_default
 DATOS_DEFAULT =get_settings().datos_default
@@ -52,6 +52,11 @@ def cargar_datos(
 
 
 def orquestador() -> None:
+    succes,msn = crear_directorios()
+
+    if succes == False:
+        raise OSError(msn)
+
     parser = argparse.ArgumentParser(description="Export sentimientos para Power BI")
     parser.add_argument("--desde", help="Fecha desde YYYY-MM-DD (solo Databricks)")
     parser.add_argument("--hasta", help="Fecha hasta YYYY-MM-DD (solo Databricks)")
@@ -60,7 +65,7 @@ def orquestador() -> None:
         type=Path,
         help="Parquet/CSV local (default: data/emilia_dashboard_base.parquet si existe)",
     )
-    
+
     parser.add_argument(
         "-o",
         "--output",

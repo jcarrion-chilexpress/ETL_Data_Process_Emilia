@@ -27,3 +27,17 @@ def leer_parquet(file: str | Path) -> pd.DataFrame:
     return pd.read_parquet(ruta)
 
 
+def crear_directorios() -> tuple[bool,str]:
+    try:
+        for path in (
+            get_settings().data_path,
+            get_settings().logs_path,
+            get_settings().config_path,
+        ):
+            path.mkdir(parents=True, exist_ok=True)
+        logger.info(f'Directorios Base creados exitosamente')
+        return True,"Directorios Base creados exitosamente"
+
+    except Exception as e:
+        logger.error(f'Error al crear directorios Base {e}')
+        return False,"Error al crear directorios Base {e}"

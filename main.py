@@ -4,10 +4,9 @@ from src.load.export_sentimientos_pbi import orquestador
 
 def main():
     orquestador()
-    archivo = "sentimientos_pbi.parquet"
-    parquet_file =leer_parquet(archivo)
-
-    print(parquet_file)
+    # archivo = "sentimientos_pbi.parquet"
+    # parquet_file =leer_parquet(archivo)
+    # print(parquet_file)
 
 
 if __name__ == "__main__":
