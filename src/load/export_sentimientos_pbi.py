@@ -1,4 +1,4 @@
-### export_sentimientos_pbi.py
+### src/load/export_sentimientos_pbi.py
 """
 Exporta conversaciones clasificadas para Power BI.
   python export_sentimientos_pbi.py
@@ -12,6 +12,7 @@ import pandas as pd
 from pathlib import Path
 #####################################
 from src.load.emilia_dashboard_sentimientos import pdf_a_dashboard
+
 from config.config import get_settings
 from config.log_config import logger
 from src.utils.utils import crear_directorios
@@ -33,8 +34,7 @@ def cargar_datos_archivo(ruta: Path) -> pd.DataFrame:
 def cargar_datos(
     desde: str | None,
     hasta: str | None,
-    datos: Path | None,
-) -> pd.DataFrame:
+    datos: Path | None,) -> pd.DataFrame:
     if datos:
         return cargar_datos_archivo(datos)
 
@@ -50,37 +50,27 @@ def cargar_datos(
         )
     return cargar_dashboard_base(fecha_desde=desde, fecha_hasta=hasta)
 
+def orquestador(
+    desde: str | None = None,
+    hasta: str | None = None,
+    datos: Path | None = None,
+    output: Path | None = None,
+    csv: bool = False,
+) -> pd.DataFrame:
 
-def orquestador() -> None:
-    succes,msn = crear_directorios()
-
-    if succes == False:
-        raise OSError(msn)
-
-    parser = argparse.ArgumentParser(description="Export sentimientos para Power BI")
-    parser.add_argument("--desde", help="Fecha desde YYYY-MM-DD (solo Databricks)")
-    parser.add_argument("--hasta", help="Fecha hasta YYYY-MM-DD (solo Databricks)")
-    parser.add_argument(
-        "--datos",
-        type=Path,
-        help="Parquet/CSV local (default: data/emilia_dashboard_base.parquet si existe)",
+    pdf = cargar_datos(
+        desde,
+        hasta,
+        datos
     )
 
-    parser.add_argument(
-        "-o",
-        "--output",
-        type=Path,
-        default=SALIDA_DEFAULT,
-        help=f"Salida parquet (default: {SALIDA_DEFAULT})",
-    )
-    parser.add_argument("--csv", action="store_true", help="Exportar también CSV")
-    args = parser.parse_args()
-
-    pdf = cargar_datos(args.desde, args.hasta, args.datos)
     if "history" not in pdf.columns:
-        raise SystemExit("El dataset debe tener columna 'history'.")
+        raise ValueError(
+            "El dataset debe tener columna history"
+        )
 
     rows = pdf_a_dashboard(pdf)
+
     pbi = pd.DataFrame(
         [
             {
@@ -94,21 +84,30 @@ def orquestador() -> None:
         ]
     )
 
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    pbi.to_parquet(args.output, index=False)
-    logger.info(f"OK: {len(pbi)} filas → {args.output}")
+    if output:
 
-    if args.csv:
-        csv_path = args.output.with_suffix(".csv")
-        pbi.to_csv(csv_path, index=False)
-        logger.info(f"OK: CSV → {csv_path}")
+        output.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
 
-    por_sentiment = pbi.groupby("sentiment", sort=False).size().sort_values(ascending=False)
-    total = len(pbi)
+        pbi.to_parquet(
+            output,
+            index=False
+        )
 
-    logger.info("\nDistribución:")
+        logger.info(
+            f"Parquet generado: {output}"
+        )
 
-    for sentiment, count in por_sentiment.items():
-        pct = round(count / total * 100) if total else 0
-        logger.info(f"  {sentiment}: {count} ({pct}%)")
+    if csv and output:
+
+        csv_path = output.with_suffix(".csv")
+
+        pbi.to_csv(
+            csv_path,
+            index=False
+        )
+
+    return pbi
 

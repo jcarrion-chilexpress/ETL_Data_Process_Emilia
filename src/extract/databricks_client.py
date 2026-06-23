@@ -10,7 +10,7 @@ from datetime import date, datetime
 from decimal import Decimal
 from pathlib import Path
 import requests
-
+import pandas as pd
 from config.config import get_settings
 from config.log_config import logger
 
@@ -345,9 +345,23 @@ class DatabricksRestClient:
             return self.fetch_data_parquet_df(sql)
         return pd.DataFrame(self.fetch_data(sql))
 
+from pyspark.sql import SparkSession
 
 def configurado() -> bool:
-    return bool(_env("DATABRICKS_SERVER_HOSTNAME") and _env("DATABRICKS_TOKEN") and _env("DATABRICKS_HTTP_PATH"))
+    """
+    Determina si existe una forma válida de acceder a Databricks.
+    """
+    spark = SparkSession.getActiveSession()
+    if spark is not None:
+        return True
+    settings = get_settings()
+    return all(
+        [
+            bool(settings.databricks_server_hostname),
+            settings.databricks_token is not None,
+            bool(settings.databricks_http_path),
+        ]
+    )
 
 
 def cargar_dashboard_base(
@@ -355,20 +369,47 @@ def cargar_dashboard_base(
     fecha_hasta: str | None = None,
     *,
     client: DatabricksRestClient | None = None,
-):
-    """Lee emilia_dashboard_base desde el cluster (mismo .env que fetch_data)."""
-    import pandas as pd
+) -> pd.DataFrame:
+    """
+    Carga la tabla base utilizada por el proceso de sentimientos.
+
+    Prioridad:
+        1. Si existe una SparkSession activa -> usa spark.sql()
+        2. Si no existe -> usa DatabricksRestClient
+
+    Parameters
+    ----------
+    fecha_desde : str | None
+        Fecha mínima (YYYY-MM-DD)
+
+    fecha_hasta : str | None
+        Fecha máxima (YYYY-MM-DD)
+
+    client : DatabricksRestClient | None
+        Cliente reutilizable opcional.
+
+    Returns
+    -------
+    pd.DataFrame
+    """
 
     where = []
+
     if fecha_desde:
         where.append(f"fecha >= DATE '{fecha_desde}'")
+
     if fecha_hasta:
         where.append(f"fecha <= DATE '{fecha_hasta}'")
-    filtro = (" WHERE " + " AND ".join(where)) if where else ""
+
+    filtro = ""
+    if where:
+        filtro = f"WHERE {' AND '.join(where)}"
+
     sql = f"""
         SELECT
             session_id,
             id,
+            fecha,
             history,
             fecha_inicio,
             fecha_fin,
@@ -377,27 +418,53 @@ def cargar_dashboard_base(
             mensajes_bot,
             tipo_sesion,
             duracion_minutos,
-            fecha,
             isn
         FROM {TABLA_DASHBOARD}
         {filtro}
-    limit 100
+        limit 100
     """
-    own = client is None
-    c = client or DatabricksRestClient()
+
+    spark = SparkSession.getActiveSession()
+
     try:
-        return c.query_df(sql, via_parquet=True)
+        # ==========================
+        # Databricks Notebook
+        # ==========================
+        if spark is not None:
+            return spark.sql(sql).toPandas()
+
+        # ==========================
+        # Ejecución Local
+        # ==========================
+        own_client = client is None
+
+        if own_client:
+            client = DatabricksRestClient()
+
+        try:
+            return client.query_df(
+                sql,
+                via_parquet=True
+            )
+
+        finally:
+            if own_client:
+                client.close()
+
     except Exception as exc:
+
         msg = str(exc).lower()
-        if "table_or_view_not_found" in msg or "not found" in msg:
+
+        if (
+            "table_or_view_not_found" in msg
+            or "table not found" in msg
+            or "view not found" in msg
+        ):
             raise RuntimeError(
-                f"No existe {TABLA_DASHBOARD}. "
-                "Ejecuta: python recrear_tabla_dashboard.py"
+                f"No existe la tabla '{TABLA_DASHBOARD}'."
             ) from exc
+
         raise
-    finally:
-        if own:
-            c.close()
 
 
 def obtener_datos_databricks():
