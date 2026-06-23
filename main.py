@@ -9,7 +9,6 @@ def main():
 
     print(parquet_file)
 
-
 if __name__ == "__main__":
     try:
         main()
