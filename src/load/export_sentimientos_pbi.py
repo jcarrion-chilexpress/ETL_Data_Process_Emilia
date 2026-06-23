@@ -13,6 +13,7 @@ from pathlib import Path
 #####################################
 from src.load.emilia_dashboard_sentimientos import pdf_a_dashboard
 from config.config import get_settings
+from config.log_config import logger
 
 ## ------------------------------- ##
 SALIDA_DEFAULT= get_settings().salida_default
@@ -59,6 +60,7 @@ def orquestador() -> None:
         type=Path,
         help="Parquet/CSV local (default: data/emilia_dashboard_base.parquet si existe)",
     )
+    
     parser.add_argument(
         "-o",
         "--output",
@@ -89,19 +91,19 @@ def orquestador() -> None:
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     pbi.to_parquet(args.output, index=False)
-    print(f"OK: {len(pbi)} filas → {args.output}")
+    logger.info(f"OK: {len(pbi)} filas → {args.output}")
 
     if args.csv:
         csv_path = args.output.with_suffix(".csv")
         pbi.to_csv(csv_path, index=False)
-        print(f"OK: CSV → {csv_path}")
+        logger.info(f"OK: CSV → {csv_path}")
 
     por_sentiment = pbi.groupby("sentiment", sort=False).size().sort_values(ascending=False)
     total = len(pbi)
 
-    print("\nDistribución:")
+    logger.info("\nDistribución:")
 
     for sentiment, count in por_sentiment.items():
         pct = round(count / total * 100) if total else 0
-        print(f"  {sentiment}: {count} ({pct}%)")
+        logger.info(f"  {sentiment}: {count} ({pct}%)")
 
