@@ -96,7 +96,6 @@ def orquestador(
         )
 
     if csv and output:
-
         csv_path = output.with_suffix(".csv")
 
         pbi.to_csv(

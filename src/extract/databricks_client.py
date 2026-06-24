@@ -421,7 +421,6 @@ def cargar_dashboard_base(
             isn
         FROM {TABLA_DASHBOARD}
         {filtro}
-        limit 100
     """
 
     spark = SparkSession.getActiveSession()
