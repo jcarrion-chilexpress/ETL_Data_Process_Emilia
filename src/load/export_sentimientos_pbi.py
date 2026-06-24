@@ -55,22 +55,13 @@ def orquestador(
     hasta: str | None = None,
     datos: Path | None = None,
     output: Path | None = None,
-    csv: bool = False,
-) -> pd.DataFrame:
+    csv: bool = False) -> pd.DataFrame:
 
-    pdf = cargar_datos(
-        desde,
-        hasta,
-        datos
-    )
-
+    pdf = cargar_datos(desde,hasta,datos)
     if "history" not in pdf.columns:
         raise ValueError(
-            "El dataset debe tener columna history"
-        )
-
+            "El dataset debe tener columna history")
     rows = pdf_a_dashboard(pdf)
-
     pbi = pd.DataFrame(
         [
             {
@@ -84,8 +75,12 @@ def orquestador(
         ]
     )
 
+    success,msn = crear_directorios()
+    if not success:
+        logger.info(msn)
+        raise ValueError(msn)
+    
     if output:
-
         output.parent.mkdir(
             parents=True,
             exist_ok=True,
