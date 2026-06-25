@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     databricks_http_path: str = ""
     default_notebook_path: str = ""
 
+    default_sandbox:str = "adl_sandbox.ext_jcarrion"
     # ==================================================
     # Paths
     # ==================================================
