@@ -38,8 +38,10 @@ def step_get_sqlquery(table_name:str):
     return True,tabla_sql,sql_query
 
 
-def step_generar_pdf(query: str, file_name: str):
-    success, pdf = orquestador(query, file_name)
+def step_generar_pdf(query: str, file_name: str,file_save=False):
+    success, pdf = orquestador(query
+                               ,file_name
+                               ,file_save=file_save)
 
     if not success:
         logger.error("No fue posible generar el DataFrame.")
