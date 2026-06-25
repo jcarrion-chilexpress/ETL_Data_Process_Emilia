@@ -1,4 +1,5 @@
 from pathlib import Path
+import pandas as pd
 from src.utils.utils import read_json_file,read_sql_file
 from config.config import get_settings
 from config.log_config import logger
@@ -37,18 +38,26 @@ def step_get_sqlquery(table_name:str):
     return True,tabla_sql,sql_query
 
 
-def step_generar_pdf(query:str
-                     ,file_name:str):
-    pdf = orquestador(query,file_name)
-    return pdf
+def step_generar_pdf(query: str, file_name: str):
+    success, pdf = orquestador(query, file_name)
 
-def step_create_table_Databricks(pdf,tabla:str):
+    if not success:
+        logger.error("No fue posible generar el DataFrame.")
+        return False, None
+
+    return True, pdf
+
+def step_save_table(spark, df, tabla):
     try:
-        pdf.to_parquet(settings.salida_default)        
-        logger.info(f'creando tabla {sanbox}.{tabla}')
-        df_spark = spark.createDataFrame(pdf)
-        df_spark.write.mode("overwrite").saveAsTable(
-            f'{sanbox}.{tabla}')
+        logger.info(f'Creando tabla {sanbox}.{tabla}')
+        df_spark = spark.createDataFrame(df)
+        if isinstance(df, pd.DataFrame):
+            df = spark.createDataFrame(df)
+            (
+                df_spark.write
+                .mode("overwrite")
+                .saveAsTable(f"{sanbox}.{tabla}")
+            )
+            logger.info(f'Tabla {sanbox}.{tabla} creada exitosamente')
     except Exception as e:
-        logger.exception(f'{e}')
-
+        logger.exception(e)
