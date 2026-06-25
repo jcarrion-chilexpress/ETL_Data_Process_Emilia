@@ -23,7 +23,6 @@ _PCT = re.compile(r"%[0-9A-Fa-f]{2}")
 def norm(text: str) -> str:
     return re.sub(r"\s+", " ", (text or "").lower().strip())
 
-
 def similar(a: str, b: str, threshold: float = 0.82) -> bool:
     if not a or not b:
         return False

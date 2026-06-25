@@ -1,17 +1,26 @@
 ## main.py
 import sys
-from src.load.export_sentimientos_pbi import (
-    orquestador
-)
+import os
+from src.flow.flow import (step_get_sqlquery
+                           ,step_generar_pdf)
+from src.load.save_delta import guardar_delta_merge
+from src.utils.utils import leer_parquet
 from config.config import get_settings
+
+os.system('cls')
 
 def main():
     settings = get_settings()
-    df = orquestador(
-            desde="2026-06-01",
-            hasta="2026-06-20")
+    json_file = settings.config_path
+    file_name = "emilia_dashboard_base"
+    success,query = step_get_sqlquery(file_name)
 
-    df.to_parquet(settings.salida_default)
+    if success:
+        step_generar_pdf(query,file_name)
+    
+    df = leer_parquet(file_name+'.parquet')
+    print(df)
+
 
 if __name__ == "__main__":
     try:

@@ -1,8 +1,7 @@
-### databricks_client.py
+### src/extract/databricks_client.py
 import base64
 import io
 import json
-import logging
 import os
 import time
 import uuid
@@ -57,9 +56,15 @@ class DatabricksRestClient:
         logger.info("Creando contexto en cluster %s...", self.cluster_id)
         resp = requests.post(url, headers=self.headers, json=payload, timeout=30)
         if resp.status_code != 200:
+            logger.error(
+                "Error creando contexto. Status: %s - Response: %s",
+                resp.status_code,
+                resp.text,
+            )
             raise Exception(f"Failed to create context: {resp.text}")
+
         self.context_id = resp.json()["id"]
-        logger.info("Context created: %s", self.context_id)
+        logger.info("Contexto creado exitosamente: %s", self.context_id)
         self._wait_for_context()
 
     def _wait_for_context(self):
@@ -69,9 +74,10 @@ class DatabricksRestClient:
             resp = requests.get(url, headers=self.headers, params=params, timeout=30)
             status = resp.json().get("status")
             if status == "Running":
-                logger.info("Context is ready.")
+                logger.info("Contexto %s listo para usar", self.context_id)
                 return
             if status == "Error":
+                logger.error("Error durante la creación del contexto %s", self.context_id)
                 raise Exception("Context creation failed.")
             time.sleep(1)
         raise Exception("Timeout waiting for context to be ready")
@@ -177,11 +183,16 @@ class DatabricksRestClient:
         return self._fetch_data_raw(sql_query)
 
     def _dbfs_list(self, api_path: str) -> list[dict]:
+        logger.info("Listando archivos DBFS: %s", api_path)
         url = f"https://{self.host}/api/2.0/dbfs/list"
         resp = requests.get(
             url, headers=self.headers, params={"path": api_path}, timeout=60
         )
         if resp.status_code != 200:
+            logger.error(
+                    "Error listando DBFS %s. Response: %s",
+                    api_path,
+                    resp.text)
             raise Exception(f"dbfs/list failed: {resp.text}")
         return resp.json().get("files", [])
 
@@ -365,26 +376,16 @@ def configurado() -> bool:
 
 
 def cargar_dashboard_base(
-    fecha_desde: str | None = None,
-    fecha_hasta: str | None = None,
-    *,
-    client: DatabricksRestClient | None = None,
-) -> pd.DataFrame:
+                    query,
+                    client: DatabricksRestClient | None = None) -> pd.DataFrame:
     """
     Carga la tabla base utilizada por el proceso de sentimientos.
-
     Prioridad:
         1. Si existe una SparkSession activa -> usa spark.sql()
         2. Si no existe -> usa DatabricksRestClient
-
     Parameters
     ----------
-    fecha_desde : str | None
-        Fecha mínima (YYYY-MM-DD)
-
-    fecha_hasta : str | None
-        Fecha máxima (YYYY-MM-DD)
-
+    query  : sql spark 
     client : DatabricksRestClient | None
         Cliente reutilizable opcional.
 
@@ -392,46 +393,14 @@ def cargar_dashboard_base(
     -------
     pd.DataFrame
     """
-
-    where = []
-
-    if fecha_desde:
-        where.append(f"fecha >= DATE '{fecha_desde}'")
-
-    if fecha_hasta:
-        where.append(f"fecha <= DATE '{fecha_hasta}'")
-
-    filtro = ""
-    if where:
-        filtro = f"WHERE {' AND '.join(where)}"
-
-    sql = f"""
-        SELECT
-            session_id,
-            id,
-            fecha,
-            history,
-            fecha_inicio,
-            fecha_fin,
-            cantidad_mensajes,
-            mensajes_usuario,
-            mensajes_bot,
-            tipo_sesion,
-            duracion_minutos,
-            isn
-        FROM {TABLA_DASHBOARD}
-        {filtro}
-    """
-
+    sql = query
     spark = SparkSession.getActiveSession()
-
     try:
         # ==========================
         # Databricks Notebook
         # ==========================
         if spark is not None:
             return spark.sql(sql).toPandas()
-
         # ==========================
         # Ejecución Local
         # ==========================
@@ -445,13 +414,11 @@ def cargar_dashboard_base(
                 sql,
                 via_parquet=True
             )
-
         finally:
             if own_client:
                 client.close()
 
     except Exception as exc:
-
         msg = str(exc).lower()
 
         if (
@@ -464,7 +431,6 @@ def cargar_dashboard_base(
             ) from exc
 
         raise
-
 
 def obtener_datos_databricks():
     client = DatabricksRestClient()

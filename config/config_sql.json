@@ -1,0 +1,15 @@
+{
+"emilia_dashboard_base":
+    {
+    "query_sql_path":"src/extract/query_sql/emilia_dashboard_base.sql",
+    "tabla_sql":"adl_sandbox.cmontenegroo.emilia_dashboard_base",
+    "filtro":10
+    }
+,"sentimientos_emilia_dashboard":
+    {
+    "query_sql_path":"src/extract/query_sql/sentimientos_emilia_dashboard.sql",
+    "tabla_sql":"adl_sandbox.cmontenegroo.emilia_dashboard_base",
+    "filtro":10
+    }    
+}
+

@@ -1,7 +1,21 @@
+import json
+from typing import Any
 from pathlib import Path
 import pandas as pd
 from config.config import get_settings
 from config.log_config import logger
+
+settings = get_settings()
+
+# -------------------------------------------------- #
+def save_parquet(df:pd.DataFrame,file_name:str):
+    path_parquet = Path(settings.data_path, file_name+".parquet")
+    try:
+        logger.info(f'Guardando archivo {path_parquet}')
+        df.to_parquet(path_parquet)
+    except Exception as e:
+        logger.exception(f'Error guardando Parquet{e}')
+
 
 def leer_parquet(file: str | Path) -> pd.DataFrame:
     """
@@ -10,15 +24,12 @@ def leer_parquet(file: str | Path) -> pd.DataFrame:
     ----------
     file : str | Path
         Ruta/Nombre del archivo parquet.
-
     Returns
     -------
     pd.DataFrame
     """
     ruta = Path(get_settings().data_path,file)
-
     logger.info(f'Leyendo archivo {ruta}')
-
     if not ruta.exists():
         raise FileNotFoundError(
             f"No existe el archivo: {ruta}"
@@ -26,7 +37,7 @@ def leer_parquet(file: str | Path) -> pd.DataFrame:
 
     return pd.read_parquet(ruta)
 
-
+# -------------------------------------------------- #
 def crear_directorios() -> tuple[bool,str]:
     try:
         for path in (
@@ -43,4 +54,66 @@ def crear_directorios() -> tuple[bool,str]:
         return False,"Error al crear directorios Base {e}"
 
 
+# -------------------------------------------------- #
+def read_sql_file(file_path: str, **kwargs) -> tuple[bool, str]:
+    """
+    file_path: Path del archivo SQL
+    kwargs : recibe el columna_nombre = filtro
+    """
+    try:
+        if not file_path:
+            logger.error(
+            "No existe query_sql_path en el archivo json")
+
+        if not Path(file_path).is_file():
+            logger.error("El archivo %s no existe.", file_path)
+            return False, ""
+
+        with open(file_path, "r", encoding="utf-8") as file:
+            sql = file.read()
+
+        if kwargs:
+            sql = sql.format(**kwargs)
+
+        logger.info("El archivo %s existe.", file_path)
+        return True, sql
+
+    except Exception as e:
+        logger.exception("Error al leer SQL: %s", e)
+        return False, ""
+
+# -------------------------------------------------- #
+def read_json_file(
+    file_path: Path,
+    file_name: str | None = None
+    ) -> tuple[bool, dict[str, Any]]:
+    try:
+        if not Path(file_path).is_file():
+            logger.error("El archivo JSON no existe: %s", file_path)
+            return False, {}
+
+        logger.info("El archivo JSON existe: %s", file_path)
+
+        with open(file_path, "r", encoding="utf-8") as file:
+            data = json.load(file)
+        # Si no se solicita una clave específica,
+        # retorna todo el contenido del JSON.
+        if file_name is None:
+            return True, data
+
+        # Busca la clave solicitada.
+        json_key = data.get(file_name)
+        if json_key is None:
+            logger.warning(
+                "La clave '%s' no existe en el archivo %s",
+                file_name,
+                file_path
+            )
+            return False, {}
+
+        return True, json_key
+
+    except Exception as e:
+        logger.exception("Error al leer archivo JSON: %s", e)
+        return False, {}
 

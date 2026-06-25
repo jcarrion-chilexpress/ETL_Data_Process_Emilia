@@ -1,9 +1,9 @@
 from pyspark.sql import SparkSession
 
-from config.config import get_config
+from config.config import get_settings
 from config.log_config import logger
 
-config = get_config()
+config = get_settings()
 
 def guardar_delta_merge(
   sdf,

@@ -2,13 +2,10 @@
 from pathlib import Path
 from functools import lru_cache
 from typing import Optional
-
 from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 class Settings(BaseSettings):
     # ==================================================
@@ -17,9 +14,6 @@ class Settings(BaseSettings):
     databricks_server_hostname: str = ""
     databricks_token: Optional[SecretStr] = None
     databricks_http_path: str = ""
-    tabla_dashboard: str = (
-        "adl_sandbox.cmontenegroo.emilia_dashboard_base"
-    )
     default_notebook_path: str = ""
 
     # ==================================================
@@ -28,11 +22,18 @@ class Settings(BaseSettings):
     base_path: Path = BASE_DIR
     data_path: Path = BASE_DIR / "data"
     logs_path: Path = BASE_DIR / "logs"
-    config_path: Path = BASE_DIR / "config"
+    config_path: Path = BASE_DIR / "config" /"config_sql.json"
     # ==================================================
     # Logging
     # ==================================================
     archivo_log: str = "ETL_Data_Process_Emilia"
+    # ==================================================
+    # tabla Process
+    # ==================================================
+    tabla_sentimientos_emilia:str = "sentimientos_emilia_dashboard"
+    tabla_dashboard: str = (
+        "adl_sandbox.cmontenegroo.emilia_dashboard_base"
+    )
     # ==================================================
     # Pydantic
     # ==================================================
