@@ -3752,3 +3752,13 @@ NameError: name 'spark' is not defined
 2026-06-25 20:10:55 | INFO     | utils.py:32 | leer_parquet() | Leyendo archivo /Workspace/gdt/sayed/ai/jcarrion/ETL_Data_Process_Emilia/data/sentimientos_emilia_dashboard.parquet
 2026-06-25 20:10:55 | INFO     | flow.py:52 | step_save_table() | Creando tabla adl_sandbox.ext_jcarrion.t_emilia_sent
 2026-06-25 20:10:58 | INFO     | flow.py:61 | step_save_table() | Tabla adl_sandbox.ext_jcarrion.t_emilia_sent creada exitosamente
+2026-06-25 16:21:59 | INFO     | flow.py:17 | step_get_sqlquery() | Cargando query C:\Users\genesys\Documents\Proyectos\data_encuesta_emilia\ETL_Data_Process_Emilia\config\config_sql.jsonsentimientos_emilia_dashboard
+2026-06-25 16:21:59 | INFO     | utils.py:95 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\Proyectos\data_encuesta_emilia\ETL_Data_Process_Emilia\config\config_sql.json
+2026-06-25 16:21:59 | INFO     | flow.py:26 | step_get_sqlquery() | Archivo Json {'query_sql_path': 'src/extract/query_sql/sentimientos_emilia_dashboard.sql', 'tabla_sql': 't_emilia_sent', 'filtro': 10} cargado exitosamente
+2026-06-25 16:21:59 | INFO     | utils.py:78 | read_sql_file() | El archivo src/extract/query_sql/sentimientos_emilia_dashboard.sql existe.
+2026-06-25 16:21:59 | INFO     | flow.py:37 | step_get_sqlquery() | Query sentimientos_emilia_dashboard ok
+2026-06-25 16:21:59 | INFO     | flow.py:17 | step_get_sqlquery() | Cargando query C:\Users\genesys\Documents\Proyectos\data_encuesta_emilia\ETL_Data_Process_Emilia\config\config_sql.jsonemilia_dashboard_base
+2026-06-25 16:21:59 | INFO     | utils.py:95 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\Proyectos\data_encuesta_emilia\ETL_Data_Process_Emilia\config\config_sql.json
+2026-06-25 16:21:59 | INFO     | flow.py:26 | step_get_sqlquery() | Archivo Json {'query_sql_path': 'src/extract/query_sql/emilia_dashboard_base.sql', 'tabla_sql': 't_emilia_dashboard_base', 'filtro': 10} cargado exitosamente
+2026-06-25 16:21:59 | INFO     | utils.py:78 | read_sql_file() | El archivo src/extract/query_sql/emilia_dashboard_base.sql existe.
+2026-06-25 16:21:59 | INFO     | flow.py:37 | step_get_sqlquery() | Query emilia_dashboard_base ok
