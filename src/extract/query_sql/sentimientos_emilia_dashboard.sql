@@ -12,7 +12,7 @@ tipo_sesion,
 duracion_minutos,
 31.0 as isn
 from adl_sandbox.ext_jcarrion.t_emilia_dashboard_base as a
-where fecha >= current_date()-{dias}
+where message_date >= current_date()-{dias}
 
 
 

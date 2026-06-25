@@ -43,9 +43,12 @@ def crear_directorios() -> tuple[bool,str]:
         for path in (
             get_settings().data_path,
             get_settings().logs_path,
-            get_settings().config_path,
-        ):
-            path.mkdir(parents=True, exist_ok=True)
+            get_settings().config_path):
+
+            if path.exists():
+                continue
+            else:
+                path.mkdir(parents=True, exist_ok=True)
         logger.info(f'Directorios Base creados exitosamente')
         return True,"Directorios Base creados exitosamente"
 

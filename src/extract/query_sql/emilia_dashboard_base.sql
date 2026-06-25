@@ -1,4 +1,3 @@
-
 WITH mensajes AS (
   SELECT
     session_id,
@@ -29,6 +28,25 @@ WITH mensajes AS (
   FROM adl_sandbox.nriosm.conversation_session_history as a
     where cast(message_timestamp as date) >= current_date() - {dias}
     group by all    
+)
+,encuestas AS (
+    SELECT
+        CAST(IdUsuario AS STRING) AS id,
+        Fecha,
+        TRY_CAST(EvalIA AS INT) AS eval_ia,
+        TRY_CAST(EvalAcceso AS INT) AS eval_acceso,
+        EvalResolvReq AS resolucion,
+        ROW_NUMBER() OVER (
+            PARTITION BY CAST(IdUsuario AS STRING)
+            ORDER BY Fecha
+        ) AS orden_enc
+    FROM adl_gold.enol_v2.t_captura_api_onemarketer_encuesta_data_cruda
+    WHERE Fecha >= current_date() - {dias}
+      AND AtencionIA = 'Si'
+      AND OperadorAbre = 'robot'
+      AND OperadorCierra = 'robot'
+      AND EvalIA IS NOT NULL
+      AND TRIM(EvalIA) <> ''
 )
 ,conversaciones AS (
     SELECT
@@ -88,26 +106,22 @@ WITH mensajes AS (
             ORDER BY to_timestamp(element_at(history, -1).timestamp)
         ) AS orden_conv
     FROM conversaciones c
+),
+ISN as (SELECT
+    cast(Fecha AS STRING) AS Fecha,
+    ROUND(
+        (
+            SUM(CASE WHEN eval_ia IN (6,7) THEN 1 ELSE 0 END)
+            -
+            SUM(CASE WHEN eval_ia BETWEEN 1 AND 4 THEN 1 ELSE 0 END)
+        ) * 100.0 / COUNT(*),
+        2
+    ) AS isn
+FROM encuestas
+WHERE eval_ia BETWEEN 1 AND 7
+GROUP BY cast(Fecha AS STRING)
 )
-,encuestas AS (
-    SELECT
-        CAST(IdUsuario AS STRING) AS id,
-        Fecha,
-        TRY_CAST(EvalIA AS INT) AS eval_ia,
-        TRY_CAST(EvalAcceso AS INT) AS eval_acceso,
-        EvalResolvReq AS resolucion,
-        ROW_NUMBER() OVER (
-            PARTITION BY CAST(IdUsuario AS STRING)
-            ORDER BY Fecha
-        ) AS orden_enc
-    FROM adl_gold.enol_v2.t_captura_api_onemarketer_encuesta_data_cruda
-    WHERE Fecha >= current_date() - {dias}
-      AND AtencionIA = 'Si'
-      AND OperadorAbre = 'robot'
-      AND OperadorCierra = 'robot'
-      AND EvalIA IS NOT NULL
-      AND TRIM(EvalIA) <> ''
-)
+
 ,reclamos as
 (
     SELECT
@@ -130,7 +144,8 @@ WITH mensajes AS (
             ELSE 'SIN_RECLAMO'
         END AS estado_reclamo
             FROM mensajes a
-            GROUP BY a.message_date,a.session_id)
+            GROUP BY a.message_date,a.session_id
+)
 
 SELECT
     c.session_id,
@@ -162,13 +177,15 @@ SELECT
     e.eval_acceso,
     e.resolucion,
     ------ Datos de Reclamos
-    reclamos.* EXCEPT(message_date,session_id)
+    reclamos.* EXCEPT(message_date,session_id),
+    isn.isn
 
 FROM conversaciones_final as c
+LEFT JOIN ISN as isn
+    ON c.message_date = isn.fecha
 LEFT JOIN encuestas as e
     ON CAST(c.id AS STRING) = e.id
    AND c.orden_conv = e.orden_enc
 LEFT JOIN reclamos as reclamos
 on c.session_id = reclamos.session_id
 and c.message_date = reclamos.message_date
-

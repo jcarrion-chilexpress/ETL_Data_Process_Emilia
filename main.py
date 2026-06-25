@@ -14,8 +14,9 @@ os.system('cls')
 def main():
     settings = get_settings()
     json_file = settings.config_path
-    file_name = ["emilia_dashboard_base"
-                ] # ,"sentimientos_emilia_dashboard"
+    file_name = [#"sentimientos_emilia_dashboard"
+                 "emilia_dashboard_base"
+                 ]
 
     for file in file_name:
         success,tabla_sql,query = step_get_sqlquery(file)
