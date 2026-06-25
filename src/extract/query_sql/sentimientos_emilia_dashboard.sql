@@ -1,7 +1,7 @@
 SELECT
 session_id,
 id,
-fecha,
+message_date,
 history,
 fecha_inicio,
 fecha_fin,
@@ -10,8 +10,8 @@ mensajes_usuario,
 mensajes_bot,
 tipo_sesion,
 duracion_minutos,
-isn
-FROM adl_sandbox.cmontenegroo.emilia_dashboard_base
+31.0 as isn
+from adl_sandbox.ext_jcarrion.t_emilia_dashboard_base as a
 where fecha >= current_date()-{dias}
 
 

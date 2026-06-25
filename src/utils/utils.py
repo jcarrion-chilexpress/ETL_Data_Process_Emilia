@@ -50,7 +50,7 @@ def crear_directorios() -> tuple[bool,str]:
         return True,"Directorios Base creados exitosamente"
 
     except Exception as e:
-        logger.error(f'Error al crear directorios Base {e}')
+        logger.exception(f'Error al crear directorios Base {e}')
         return False,"Error al crear directorios Base {e}"
 
 
