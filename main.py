@@ -1,16 +1,19 @@
 ## main.py
 ## main.py
+import pandas as pd
 import sys
 from src.flow.flow import (step_get_sqlquery
                            ,step_generar_pdf
                            ,step_save_table
                            ,step_create_BD_reclamos)
 from config.config import get_settings
+from src.utils.utils import clean_df
+spark =''
 
 
 def main():
     settings = get_settings()
-    # step_create_BD_reclamos(spark)
+    step_create_BD_reclamos(spark)
 
     # file_name = ["emilia_dashboard_base"
     #              ,"sentimientos_emilia_dashboard"]

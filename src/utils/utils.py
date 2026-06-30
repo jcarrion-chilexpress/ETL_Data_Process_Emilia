@@ -4,18 +4,62 @@ from pathlib import Path
 import pandas as pd
 from config.config import get_settings
 from config.log_config import logger
+import unidecode
+import re
 
 settings = get_settings()
+
+# -------------------------------------------------- #
+def clean_df(df: pd.DataFrame) -> pd.DataFrame:
+    columnas = []
+    for columna in df.columns:
+        texto = unidecode.unidecode(columna)
+        texto = texto.strip()
+        # Reemplazar espacios por "_"
+        texto = re.sub(r"\s+", "_", texto)
+        # Dejar solo letras, números y "_"
+        texto = re.sub(r"[^A-Za-z0-9_]", "", texto)
+        columnas.append(texto)
+    df.columns = columnas
+    return df
+
+# -------------------------------------------------- #
+def save_csv_file(df:pd.DataFrame
+            ,file_name:str
+            ,path_file:Path|None = None
+            ) -> tuple[bool,Path]:
+
+    if path_file is None:
+        path_file = settings.data_path
+
+    path_csv = Path(path_file, file_name+".csv")
+    df = clean_df(df)
+    try:
+        logger.info(f'Guardando archivo {path_csv}')
+        df.to_csv(path_csv, sep=';',header=True)
+        return True,path_csv
+
+    except Exception as e:
+        logger.exception(f'Error guardando CSV{e}')
+        return False,Path("data")
 
 # -------------------------------------------------- #
 def save_parquet(df:pd.DataFrame
                  ,file_name:str
                  ,path_file:Path|None = None
+                 ,save_csv:bool = False
                  ) -> tuple[bool,Path] :
+
+    df = clean_df(df)
+    
     if path_file is None:
         path_file = settings.data_path
 
+    if save_csv:
+        save_csv_file(df,file_name,path_file)
+
     path_parquet = Path(path_file, file_name+".parquet")
+
     try:
         logger.info(f'Guardando archivo {path_parquet}')
         df.to_parquet(path_parquet)
@@ -131,4 +175,5 @@ def read_json_file(
     except Exception as e:
         logger.exception("Error al leer archivo JSON: %s", e)
         return False, {}
+
 
