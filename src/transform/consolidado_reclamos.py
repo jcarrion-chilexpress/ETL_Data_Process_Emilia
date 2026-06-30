@@ -346,7 +346,7 @@ def crear_resumen_reclamos() -> tuple[bool,list] :
             msn,path_archivo = save_parquet(df=value
                                             ,file_name = key
                                             ,path_file=settings.reclamos_path
-                                            ,save_csv=False)
+                                            ,save_csv=True)
             if msn:
                 path_archivos.append(key)
                 logger.info(f"Archivos de reclamos {key} creado exitosamente")

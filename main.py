@@ -7,13 +7,15 @@ from src.flow.flow import (step_get_sqlquery
                            ,step_save_table
                            ,step_create_BD_reclamos)
 from config.config import get_settings
-from src.utils.utils import clean_df
+from src.utils.utils import clean_df,read_parquet
 spark =''
 
 
 def main():
     settings = get_settings()
     step_create_BD_reclamos(spark)
+    # par = read_parquet('reclamos/resumen')
+    # print(par)
 
     # file_name = ["emilia_dashboard_base"
     #              ,"sentimientos_emilia_dashboard"]

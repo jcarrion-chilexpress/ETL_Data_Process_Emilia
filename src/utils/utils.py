@@ -33,10 +33,10 @@ def save_csv_file(df:pd.DataFrame
         path_file = settings.data_path
 
     path_csv = Path(path_file, file_name+".csv")
-    df = clean_df(df)
+    df_csv = clean_df(df)
     try:
         logger.info(f'Guardando archivo {path_csv}')
-        df.to_csv(path_csv, sep=';',header=True)
+        df_csv.to_csv(path_csv, sep=';',header=True)
         return True,path_csv
 
     except Exception as e:
@@ -50,19 +50,19 @@ def save_parquet(df:pd.DataFrame
                  ,save_csv:bool = False
                  ) -> tuple[bool,Path] :
 
-    df = clean_df(df)
+    df_parquet = clean_df(df)
     
     if path_file is None:
         path_file = settings.data_path
 
     if save_csv:
-        save_csv_file(df,file_name,path_file)
+        save_csv_file(df_parquet,file_name,path_file)
 
     path_parquet = Path(path_file, file_name+".parquet")
 
     try:
         logger.info(f'Guardando archivo {path_parquet}')
-        df.to_parquet(path_parquet)
+        df_parquet.to_parquet(path_parquet)
         return True,path_parquet
 
     except Exception as e:
