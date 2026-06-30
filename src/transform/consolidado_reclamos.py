@@ -36,6 +36,9 @@ USUARIOS_EXCLUIDOS: List[str] = [
 #### Clasificaciones a excluir
 CLASIFICACIONES_EXCLUIDAS: List[str] = ["n/a", "N/A", "N/a", "n/A"]
 
+##### define los decimales de def generar_dataframes
+decimales = 3
+
 def obtener_datos_por_mes(collection) -> Dict[str, Dict[str, List[Dict[str, Any]]]]:
     """
     Obtiene datos agrupados por mes y todas las clasificaciones encontradas.
@@ -231,6 +234,7 @@ def obtener_datos_por_mes(collection) -> Dict[str, Dict[str, List[Dict[str, Any]
 
 def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]) -> Dict[str, pd.DataFrame]:
     """Genera DataFrames de pandas con datos agrupados por mes y clasificación."""
+
     # 1. DataFrame de Resumen General
     logger.info(f'Generando Dataframes')
     resumen_data = []
@@ -239,15 +243,15 @@ def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]
         for clasificacion in sorted(datos_mes.keys()):
             ots = datos_mes[clasificacion]
             cantidad = len(ots)
-            suma = sum(ot.get('valor_declarado', 0) for ot in ots)
+            suma = sum(round(ot.get('valor_declarado', 0),decimales) for ot in ots)
             promedio = suma / cantidad if cantidad > 0 else 0
             
             resumen_data.append({
                 'Mes': mes_key,
                 'Clasificación': clasificacion,
                 'Cantidad': cantidad,
-                'Suma Total (CLP)': f'${suma:,.0f}',
-                'Promedio (CLP)': f'${promedio:,.0f}'
+                'Suma Total (CLP)': f'{round(suma,decimales)}',
+                'Promedio (CLP)': f'{round(promedio,decimales)}'
             })
     
     df_resumen = pd.DataFrame(resumen_data)
@@ -268,7 +272,7 @@ def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]
                     'Mes': mes_key,
                     'Clasificación': clasificacion,
                     'OT': ot_data.get('ot', ''),
-                    'Valor Declarado (CLP)': f"${ot_data.get('valor_declarado', 0):,.0f}",
+                    'Valor Declarado (CLP)': f"{round(ot_data.get('valor_declarado', 0),decimales)}",
                     'Fecha Creación': fecha_str,
                     'Usuario': ot_data.get('usuario', 'Sin usuario')
                 })
@@ -281,14 +285,13 @@ def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]
         datos_mes = datos_por_mes[mes_key]
         for clasificacion in sorted(datos_mes.keys()):
             ots = datos_mes[clasificacion]
-            suma = sum(ot.get('valor_declarado', 0) for ot in ots)
+            suma = round(sum(ot.get('valor_declarado', 0) for ot in ots),decimales)
             cantidad = len(ots)
-            
             evolucion_data.append({
                 'Mes': mes_key,
                 'Clasificación': clasificacion,
-                'Suma Total (CLP)': suma,
-                'Cantidad': cantidad
+                'Suma Total (CLP)': round(float(suma),decimales),
+                'Cantidad': round(cantidad,decimales)
             })
     
     df_evolucion = pd.DataFrame(evolucion_data)
@@ -299,7 +302,7 @@ def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]
         for clasificacion, ots in datos_mes.items():
             if clasificacion not in top_data:
                 top_data[clasificacion] = {'suma': 0, 'cantidad': 0}
-            top_data[clasificacion]['suma'] += sum(ot.get('valor_declarado', 0) for ot in ots)
+            top_data[clasificacion]['suma'] += sum(round(ot.get('valor_declarado', 0),decimales)  for ot in ots)
             top_data[clasificacion]['cantidad'] += len(ots)
     
     top_list = []
@@ -307,9 +310,9 @@ def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]
         promedio = datos['suma'] / datos['cantidad'] if datos['cantidad'] > 0 else 0
         top_list.append({
             'Clasificación': clasificacion,
-            'Suma Total (CLP)': f"${datos['suma']:,.0f}",
+            'Suma Total (CLP)': f"{round(datos['suma'],decimales)}",
             'Cantidad': datos['cantidad'],
-            'Promedio (CLP)': f'${promedio:,.0f}',
+            'Promedio (CLP)': f'{round(promedio,decimales)}',
             '_suma_num': datos['suma']  # Para ordenamiento
         })
     
