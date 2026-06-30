@@ -322,10 +322,10 @@ def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]
         'top_clasificaciones': df_top
     }
 
-def crear_resumen_reclamos() -> None:
+def crear_resumen_reclamos() -> tuple[bool,list] :
     """Función principal."""
-    logger.info("=== Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===")
-    
+    logger.info("creando resumenes de reclamos")
+
     # Mostrar filtros aplicados
     if CLASIFICACIONES_EXCLUIDAS:
         logger.info("Clasificaciones excluidas: %s", ", ".join(CLASIFICACIONES_EXCLUIDAS))
@@ -333,21 +333,29 @@ def crear_resumen_reclamos() -> None:
         logger.info("Usuarios excluidos: %s", ", ".join(USUARIOS_EXCLUIDOS))
     logger.info("MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)")
     
-
     collection = get_mongo_client()
-    
     # Obtener datos agrupados por mes
     logger.info("Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...")
     datos_por_mes = obtener_datos_por_mes(collection)
-    
     # Generar DataFrames
     logger.info("Generando DataFrames...")
     dataframes = generar_dataframes(datos_por_mes)
+    try:
+        path_archivos = []
+        for key,value in dataframes.items():
+            msn,path_archivo = save_parquet(value,key,settings.reclamos_path)
+            if msn:
+                path_archivos.append(key)
+                logger.info(f"Archivos de reclamos {key} creado exitosamente")
+
+            else:
+                logger.error(f"Archivos de reclamos {key} con error")
+        
+        return True,path_archivos
     
-    for key,value in dataframes.items():
-        save_parquet(value,key,settings.reclamos_path)
-
-
+    except Exception as e:
+        logger.error(f'Error creando reclamos {e}')
+        return False,[e]
 
 
 

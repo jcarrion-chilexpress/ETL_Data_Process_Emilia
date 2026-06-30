@@ -8,7 +8,10 @@ from config.log_config import logger
 settings = get_settings()
 
 # -------------------------------------------------- #
-def save_parquet(df:pd.DataFrame,file_name:str,path_file:Path|None = None):
+def save_parquet(df:pd.DataFrame
+                 ,file_name:str
+                 ,path_file:Path|None = None
+                 ) -> tuple[bool,Path] :
     if path_file is None:
         path_file = settings.data_path
 
@@ -16,11 +19,14 @@ def save_parquet(df:pd.DataFrame,file_name:str,path_file:Path|None = None):
     try:
         logger.info(f'Guardando archivo {path_parquet}')
         df.to_parquet(path_parquet)
+        return True,path_parquet
+
     except Exception as e:
         logger.exception(f'Error guardando Parquet{e}')
+        return False,Path("data")
 
-
-def leer_parquet(file: str | Path) -> pd.DataFrame:
+# -------------------------------------------------- #
+def read_parquet(file_name:str,path_file:Path|None = None) -> pd.DataFrame:
     """
     Lee un archivo parquet y devuelve un DataFrame.
     Parameters
@@ -31,13 +37,15 @@ def leer_parquet(file: str | Path) -> pd.DataFrame:
     -------
     pd.DataFrame
     """
-    ruta = Path(get_settings().data_path,file)
+    if path_file is None:
+        path_file = get_settings().data_path
+
+    ruta = Path(path_file,file_name +'.parquet')
     logger.info(f'Leyendo archivo {ruta}')
     if not ruta.exists():
         raise FileNotFoundError(
             f"No existe el archivo: {ruta}"
         )
-
     return pd.read_parquet(ruta)
 
 # -------------------------------------------------- #

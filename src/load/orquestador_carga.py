@@ -12,7 +12,7 @@ from typing import Any
 import pandas as pd
 from pathlib import Path
 #####################################
-from src.load.emilia_dashboard_sentimientos import pdf_a_dashboard
+from src.transform.bot_emilia_sentimientos import pdf_a_dashboard
 
 from config.config import get_settings
 from config.log_config import logger
@@ -56,7 +56,6 @@ def cargar_sentimientos_emilia(pdf) -> pd.DataFrame:
     logger.info("Dataset sentimientos emilia ok")
     return pbi
 
-
 def orquestador(
     query: str = "",
     file_name: str = "",
@@ -65,9 +64,7 @@ def orquestador(
 
     try:
         crear_directorios()
-
         pdf = cargar_datos(query)
-
         if file_name == settings.tabla_sentimientos_emilia:
             pdf = cargar_sentimientos_emilia(pdf)
 

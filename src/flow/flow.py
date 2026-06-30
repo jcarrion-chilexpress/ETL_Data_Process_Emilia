@@ -1,9 +1,12 @@
 from pathlib import Path
 import pandas as pd
-from src.utils.utils import read_json_file,read_sql_file
+from src.utils.utils import (read_json_file
+                             ,read_sql_file
+                             ,read_parquet)
 from config.config import get_settings
 from config.log_config import logger
-from src.load.export_sentimientos_pbi import (
+from src.transform.consolidado_reclamos import crear_resumen_reclamos
+from src.load.orquestador_carga import (
     orquestador
 )
 
@@ -37,7 +40,6 @@ def step_get_sqlquery(table_name:str):
     logger.info(f'Query {table_name} ok')
     return True,tabla_sql,sql_query
 
-
 def step_generar_pdf(query: str, file_name: str,file_save=False):
     success, pdf = orquestador(query
                                ,file_name
@@ -63,3 +65,20 @@ def step_save_table(spark, df, tabla):
             logger.info(f'Tabla {sanbox}.{tabla} creada exitosamente')
     except Exception as e:
         logger.exception(e)
+
+def step_create_BD_reclamos(spark,load_table:bool = False):
+    logger.info(f'Creando tabla de reclamos')
+    success,archivos = crear_resumen_reclamos()
+    path_reclamos = settings.reclamos_path
+
+    try:
+        if success:
+            for archivo in archivos:
+                parquet = read_parquet(archivo,path_reclamos)
+                nombre_tabla = 'reclamos_'+archivo
+
+                if load_table:
+                    step_save_table(spark,parquet,nombre_tabla)
+    except Exception as e:
+        logger.exception(f'Error Creando tabla de reclamos !: {e}')
+

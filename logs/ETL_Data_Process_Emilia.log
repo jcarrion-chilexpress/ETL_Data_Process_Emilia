@@ -5986,3 +5986,256 @@ OSError: Cannot save file into a non-existent directory: 'C:\Users\genesys\Docum
 2026-06-30 11:56:02 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
 2026-06-30 11:56:02 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
 2026-06-30 11:56:02 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:24:46 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | === Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===
+2026-06-30 12:24:46 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:24:46 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:24:46 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:24:47 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:24:47 | INFO     | consolidado_reclamos.py:339 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:24:47 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:24:49 | INFO     | consolidado_reclamos.py:343 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:24:49 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:24:49 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:24:49 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:24:49 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:24:49 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:25:33 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | === Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===
+2026-06-30 12:25:33 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:25:33 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:25:33 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:25:34 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:25:34 | INFO     | consolidado_reclamos.py:339 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:25:34 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:25:35 | INFO     | consolidado_reclamos.py:343 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:25:35 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:25:35 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:25:35 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:25:35 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:25:35 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:28:55 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | === Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===
+2026-06-30 12:28:55 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:28:55 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:28:55 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:28:57 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:28:57 | INFO     | consolidado_reclamos.py:339 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:28:57 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:28:58 | INFO     | consolidado_reclamos.py:343 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:28:58 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:28:58 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:28:58 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:28:58 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:28:58 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:32:54 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:32:54 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:32:54 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:32:54 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:32:55 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:32:55 | INFO     | consolidado_reclamos.py:339 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:32:55 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:32:56 | INFO     | consolidado_reclamos.py:343 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:32:56 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:32:56 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:32:56 | INFO     | consolidado_reclamos.py:351 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:32:56 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:32:56 | INFO     | consolidado_reclamos.py:351 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:32:56 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:32:56 | INFO     | consolidado_reclamos.py:351 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:32:56 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:32:56 | INFO     | consolidado_reclamos.py:351 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:33:15 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:33:15 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:33:15 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:33:15 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:33:16 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:33:16 | INFO     | consolidado_reclamos.py:339 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:33:16 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:33:18 | INFO     | consolidado_reclamos.py:343 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:33:18 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:33:18 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:33:18 | INFO     | consolidado_reclamos.py:351 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:33:18 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:33:18 | INFO     | consolidado_reclamos.py:351 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:33:18 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:33:18 | INFO     | consolidado_reclamos.py:351 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:33:18 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:33:18 | INFO     | consolidado_reclamos.py:351 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:38:13 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:38:13 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:38:13 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:38:13 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:38:14 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:38:14 | INFO     | consolidado_reclamos.py:338 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:38:14 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:38:16 | INFO     | consolidado_reclamos.py:341 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:38:16 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:38:16 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:38:16 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:38:16 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:38:16 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:38:16 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:38:16 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:38:16 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:38:16 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:40:32 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:40:32 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:40:32 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:40:32 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:40:33 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:40:33 | INFO     | consolidado_reclamos.py:338 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:40:33 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:40:34 | INFO     | consolidado_reclamos.py:341 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:40:34 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:40:34 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:40:34 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:40:34 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:40:34 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:40:34 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:40:34 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:40:34 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:40:34 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:41:11 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:41:11 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:41:11 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:41:11 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:41:12 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:41:12 | INFO     | consolidado_reclamos.py:338 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:41:12 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:41:13 | INFO     | consolidado_reclamos.py:341 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:41:13 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:41:13 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:41:13 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:41:13 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:41:13 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:41:13 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:41:13 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:41:13 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:41:13 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:42:49 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:42:49 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:42:49 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:42:49 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:42:50 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:42:50 | INFO     | consolidado_reclamos.py:338 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:42:50 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:42:52 | INFO     | consolidado_reclamos.py:341 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:42:52 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:42:52 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:42:52 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:42:52 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:42:52 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:42:52 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:42:52 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:42:52 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:42:52 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:51:27 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:51:27 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:51:27 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:51:27 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:51:28 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:51:28 | INFO     | consolidado_reclamos.py:338 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:51:28 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:51:30 | INFO     | consolidado_reclamos.py:341 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:51:30 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:51:30 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:51:30 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:51:30 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:51:30 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:51:30 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:51:30 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:51:30 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:51:30 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:52:22 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:52:22 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:52:22 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:52:22 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:52:23 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:52:23 | INFO     | consolidado_reclamos.py:338 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:52:23 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:52:25 | INFO     | consolidado_reclamos.py:341 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:52:25 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:52:25 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:52:25 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:52:25 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:52:25 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:52:25 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:52:25 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:52:25 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:52:25 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:52:25 | INFO     | utils.py:44 | read_parquet() | Leyendo archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet\resumen
+2026-06-30 12:56:13 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:56:13 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:56:13 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:56:13 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:56:14 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:56:14 | INFO     | consolidado_reclamos.py:338 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:56:14 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:56:16 | INFO     | consolidado_reclamos.py:341 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:56:16 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:56:16 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:56:16 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:56:16 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:56:16 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:56:16 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:56:16 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:56:16 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:56:16 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:57:17 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:57:17 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:57:17 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:57:17 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:57:18 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:57:18 | INFO     | consolidado_reclamos.py:338 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:57:18 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:57:19 | INFO     | consolidado_reclamos.py:341 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:57:19 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:57:19 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:57:19 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:57:19 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:57:19 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:57:19 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:57:19 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:57:19 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:57:19 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:57:19 | INFO     | utils.py:44 | read_parquet() | Leyendo archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen
+2026-06-30 12:58:06 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:58:06 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:58:06 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:58:06 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:58:07 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:58:07 | INFO     | consolidado_reclamos.py:338 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:58:07 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:58:08 | INFO     | consolidado_reclamos.py:341 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:58:08 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:58:08 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:58:08 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:58:08 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:58:08 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:58:08 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:58:08 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:58:08 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:58:08 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:58:08 | INFO     | utils.py:44 | read_parquet() | Leyendo archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:58:09 | INFO     | utils.py:44 | read_parquet() | Leyendo archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:58:09 | INFO     | utils.py:44 | read_parquet() | Leyendo archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:58:09 | INFO     | utils.py:44 | read_parquet() | Leyendo archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:58:41 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | creando resumenes de reclamos
+2026-06-30 12:58:41 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 12:58:41 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 12:58:41 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 12:58:42 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 12:58:42 | INFO     | consolidado_reclamos.py:338 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 12:58:42 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 12:58:43 | INFO     | consolidado_reclamos.py:341 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 12:58:43 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 12:58:43 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:58:43 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos resumen creado exitosamente
+2026-06-30 12:58:43 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:58:43 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos detalle creado exitosamente
+2026-06-30 12:58:43 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:58:43 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos evolucion creado exitosamente
+2026-06-30 12:58:43 | INFO     | utils.py:20 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 12:58:43 | INFO     | consolidado_reclamos.py:349 | crear_resumen_reclamos() | Archivos de reclamos top_clasificaciones creado exitosamente
+2026-06-30 12:58:43 | INFO     | utils.py:44 | read_parquet() | Leyendo archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 12:58:43 | INFO     | utils.py:44 | read_parquet() | Leyendo archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 12:58:43 | INFO     | utils.py:44 | read_parquet() | Leyendo archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 12:58:43 | INFO     | utils.py:44 | read_parquet() | Leyendo archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet

@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import unquote
 from config.log_config import logger
-from src.utils.sentimientos_settings import (
+from src.utils.bot_emilia_sentimientos_settings import (
                                 KEYWORDS,URGENCY_PATTERNS
                                 ,CONFUSION_PATTERNS,SATISFACTION_PATTERNS
                                 ,FRUSTRACION,LOOP_TRACKING
