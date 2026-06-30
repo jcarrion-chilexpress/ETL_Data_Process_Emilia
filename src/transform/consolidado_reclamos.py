@@ -250,8 +250,8 @@ def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]
                 'Mes': mes_key,
                 'Clasificación': clasificacion,
                 'Cantidad': cantidad,
-                'Suma Total (CLP)': f'{round(suma,decimales)}',
-                'Promedio (CLP)': f'{round(promedio,decimales)}'
+                'Suma Total (CLP)': round(suma,decimales),
+                'Promedio (CLP)': round(promedio,decimales)
             })
     
     df_resumen = pd.DataFrame(resumen_data)
@@ -272,7 +272,7 @@ def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]
                     'Mes': mes_key,
                     'Clasificación': clasificacion,
                     'OT': ot_data.get('ot', ''),
-                    'Valor Declarado (CLP)': f"{round(ot_data.get('valor_declarado', 0),decimales)}",
+                    'Valor Declarado (CLP)': round(ot_data.get('valor_declarado', 0),decimales),
                     'Fecha Creación': fecha_str,
                     'Usuario': ot_data.get('usuario', 'Sin usuario')
                 })
@@ -310,9 +310,9 @@ def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]
         promedio = datos['suma'] / datos['cantidad'] if datos['cantidad'] > 0 else 0
         top_list.append({
             'Clasificación': clasificacion,
-            'Suma Total (CLP)': f"{round(datos['suma'],decimales)}",
+            'Suma Total (CLP)': round(datos['suma'],decimales),
             'Cantidad': datos['cantidad'],
-            'Promedio (CLP)': f'{round(promedio,decimales)}',
+            'Promedio (CLP)': round(promedio,decimales),
             '_suma_num': datos['suma']  # Para ordenamiento
         })
     
@@ -343,13 +343,14 @@ def crear_resumen_reclamos() -> tuple[bool,list] :
     # Generar DataFrames
     logger.info("Generando DataFrames...")
     dataframes = generar_dataframes(datos_por_mes)
+
     try:
         path_archivos = []
         for key,value in dataframes.items():
             msn,path_archivo = save_parquet(df=value
                                             ,file_name = key
                                             ,path_file=settings.reclamos_path
-                                            ,save_csv=True)
+                                            ,save_csv=False)
             if msn:
                 path_archivos.append(key)
                 logger.info(f"Archivos de reclamos {key} creado exitosamente")
