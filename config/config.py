@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     base_path: Path = BASE_DIR
     data_path: Path = BASE_DIR / "data"
     logs_path: Path = BASE_DIR / "logs"
+    reclamos_path: Path = BASE_DIR / "data" /"reclamos"
     config_path: Path = BASE_DIR / "config" /"config_sql.json"
     # ==================================================
     # Logging
@@ -35,6 +36,13 @@ class Settings(BaseSettings):
     tabla_dashboard: str = (
         "adl_sandbox.cmontenegroo.emilia_dashboard_base"
     )
+    # ==================================================
+    # Mongo Config
+    # ==================================================
+    mongo_uri_default:str ="mongodb://AutomatizacionIA:du4UjPdnoIet91y3@cxp-ia-prod-shard-00-00.mv6l8y.mongodb.net:27017,cxp-ia-prod-shard-00-01.mv6l8y.mongodb.net:27017,cxp-ia-prod-shard-00-02.mv6l8y.mongodb.net:27017/?replicaSet=atlas-zwxmkl-shard-0&ssl=true&authSource=admin&retryWrites=true&w=majority&appName=cxp-ia-prod"
+    mongo_db_default:str  ="gr-comercial"
+    monog_collection_name_default:str = "usage_logs"
+
     # ==================================================
     # Pydantic
     # ==================================================
@@ -89,10 +97,8 @@ class Settings(BaseSettings):
 
     @property
     def workspace_url(self) -> Optional[str]:
-
         if not self.es_databricks:
             return None
-
         try:
             from pyspark.sql import SparkSession
 

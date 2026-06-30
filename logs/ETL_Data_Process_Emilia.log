@@ -5702,3 +5702,287 @@ FileExistsError: [WinError 183] No se puede crear un archivo que ya existe: 'C:\
 2026-06-25 17:55:32 | INFO     | databricks_client.py:262 | fetch_data_parquet_df() | Descargando /FileStore/emilia_local_export/3fb1da0d4c62459892e123cddab4f532/part-00000-tid-4692870577627090592-1627ee63-5fb0-41ff-8bc3-2c981812790f-5129-1-c000.snappy.parquet ...
 2026-06-25 17:56:26 | INFO     | databricks_client.py:266 | fetch_data_parquet_df() | Descarga Parquet: 34481 filas
 2026-06-25 17:56:27 | INFO     | utils.py:14 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\Proyectos\data_encuesta_emilia\ETL_Data_Process_Emilia\data\emilia_dashboard_base.parquet
+2026-06-30 09:57:33 | INFO     | flow.py:17 | step_get_sqlquery() | Cargando query C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.jsonemilia_dashboard_base
+2026-06-30 09:57:33 | INFO     | utils.py:98 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.json
+2026-06-30 09:57:33 | INFO     | flow.py:26 | step_get_sqlquery() | Archivo Json {'query_sql_path': 'src/extract/query_sql/emilia_dashboard_base.sql', 'tabla_sql': 't_emilia_dashboard_base', 'filtro': 10} cargado exitosamente
+2026-06-30 09:57:33 | INFO     | utils.py:81 | read_sql_file() | El archivo src/extract/query_sql/emilia_dashboard_base.sql existe.
+2026-06-30 09:57:33 | INFO     | flow.py:37 | step_get_sqlquery() | Query emilia_dashboard_base ok
+2026-06-30 09:57:33 | INFO     | utils.py:52 | crear_directorios() | Directorios Base creados exitosamente
+2026-06-30 09:57:33 | INFO     | databricks_client.py:242 | fetch_data_parquet_df() | Exportando consulta a Parquet (dbfs:/FileStore/emilia_local_export/27d7323833864a2ab91777538460babc)...
+2026-06-30 09:57:33 | INFO     | databricks_client.py:56 | create_context() | Creando contexto en cluster 0313-122957-bv1pz9ur...
+2026-06-30 09:57:35 | INFO     | databricks_client.py:67 | create_context() | Contexto creado exitosamente: 6060721686290680974
+2026-06-30 09:57:50 | INFO     | databricks_client.py:77 | _wait_for_context() | Contexto 6060721686290680974 listo para usar
+2026-06-30 09:59:40 | INFO     | databricks_client.py:186 | _dbfs_list() | Listando archivos DBFS: /FileStore/emilia_local_export/27d7323833864a2ab91777538460babc
+2026-06-30 09:59:41 | INFO     | databricks_client.py:262 | fetch_data_parquet_df() | Descargando /FileStore/emilia_local_export/27d7323833864a2ab91777538460babc/part-00000-tid-3342202314830160984-3df8dd88-bdbe-4abc-b2ab-c98d71b0d6cd-17576-1-c000.snappy.parquet ...
+2026-06-30 10:00:25 | INFO     | databricks_client.py:266 | fetch_data_parquet_df() | Descarga Parquet: 20375 filas
+2026-06-30 10:00:27 | INFO     | utils.py:14 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\emilia_dashboard_base.parquet
+2026-06-30 10:08:15 | INFO     | flow.py:17 | step_get_sqlquery() | Cargando query C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.jsonemilia_dashboard_base
+2026-06-30 10:08:15 | INFO     | utils.py:98 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.json
+2026-06-30 10:08:15 | INFO     | flow.py:26 | step_get_sqlquery() | Archivo Json {'query_sql_path': 'src/extract/query_sql/emilia_dashboard_base.sql', 'tabla_sql': 't_emilia_dashboard_base', 'filtro': 10} cargado exitosamente
+2026-06-30 10:08:15 | INFO     | utils.py:81 | read_sql_file() | El archivo src/extract/query_sql/emilia_dashboard_base.sql existe.
+2026-06-30 10:08:15 | INFO     | flow.py:37 | step_get_sqlquery() | Query emilia_dashboard_base ok
+2026-06-30 10:08:15 | INFO     | utils.py:52 | crear_directorios() | Directorios Base creados exitosamente
+2026-06-30 10:08:16 | INFO     | databricks_client.py:242 | fetch_data_parquet_df() | Exportando consulta a Parquet (dbfs:/FileStore/emilia_local_export/88c8402429d4455897483aa83c99f38e)...
+2026-06-30 10:08:16 | INFO     | databricks_client.py:56 | create_context() | Creando contexto en cluster 0313-122957-bv1pz9ur...
+2026-06-30 10:08:17 | INFO     | databricks_client.py:67 | create_context() | Contexto creado exitosamente: 6738152170539565091
+2026-06-30 10:48:39 | INFO     | consolidado_reclamos.py:418 | run() | === Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===
+2026-06-30 10:48:39 | INFO     | consolidado_reclamos.py:422 | run() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 10:48:39 | INFO     | consolidado_reclamos.py:424 | run() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 10:48:39 | INFO     | consolidado_reclamos.py:425 | run() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 10:48:40 | INFO     | consolidado_reclamos.py:432 | run() | Conectado a gr-comercial.usage_logs
+2026-06-30 10:48:40 | INFO     | consolidado_reclamos.py:435 | run() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 10:48:40 | INFO     | consolidado_reclamos.py:50 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 10:48:41 | INFO     | consolidado_reclamos.py:439 | run() | Generando DataFrames...
+2026-06-30 10:48:41 | INFO     | consolidado_reclamos.py:240 | generar_dataframes() | Generando Dataframes
+2026-06-30 10:50:35 | INFO     | consolidado_reclamos.py:418 | run() | === Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===
+2026-06-30 10:50:35 | INFO     | consolidado_reclamos.py:422 | run() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 10:50:35 | INFO     | consolidado_reclamos.py:424 | run() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 10:50:35 | INFO     | consolidado_reclamos.py:425 | run() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 10:50:36 | INFO     | consolidado_reclamos.py:432 | run() | Conectado a gr-comercial.usage_logs
+2026-06-30 10:50:36 | INFO     | consolidado_reclamos.py:435 | run() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 10:50:36 | INFO     | consolidado_reclamos.py:50 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 10:50:38 | INFO     | consolidado_reclamos.py:439 | run() | Generando DataFrames...
+2026-06-30 10:50:38 | INFO     | consolidado_reclamos.py:240 | generar_dataframes() | Generando Dataframes
+2026-06-30 10:53:27 | INFO     | consolidado_reclamos.py:327 | run() | === Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===
+2026-06-30 10:53:27 | INFO     | consolidado_reclamos.py:331 | run() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 10:53:27 | INFO     | consolidado_reclamos.py:333 | run() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 10:53:27 | INFO     | consolidado_reclamos.py:334 | run() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 10:53:28 | INFO     | consolidado_reclamos.py:341 | run() | Conectado a gr-comercial.usage_logs
+2026-06-30 10:53:28 | INFO     | consolidado_reclamos.py:344 | run() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 10:53:28 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 10:53:30 | INFO     | consolidado_reclamos.py:348 | run() | Generando DataFrames...
+2026-06-30 10:53:30 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 10:53:30 | INFO     | utils.py:14 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\resumen.parquet
+2026-06-30 10:53:30 | INFO     | utils.py:14 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\detalle.parquet
+2026-06-30 10:53:30 | INFO     | utils.py:14 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\evolucion.parquet
+2026-06-30 10:53:30 | INFO     | utils.py:14 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\top_clasificaciones.parquet
+2026-06-30 11:25:58 | INFO     | consolidado_reclamos.py:327 | run() | === Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===
+2026-06-30 11:25:58 | INFO     | consolidado_reclamos.py:331 | run() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 11:25:58 | INFO     | consolidado_reclamos.py:333 | run() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 11:25:58 | INFO     | consolidado_reclamos.py:334 | run() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 11:25:59 | INFO     | consolidado_reclamos.py:341 | run() | Conectado a gr-comercial.usage_logs
+2026-06-30 11:25:59 | INFO     | consolidado_reclamos.py:344 | run() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 11:25:59 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 11:26:00 | INFO     | consolidado_reclamos.py:348 | run() | Generando DataFrames...
+2026-06-30 11:26:00 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 11:26:01 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 11:26:01 | ERROR    | utils.py:20 | save_parquet() | Error guardando ParquetCannot save file into a non-existent directory: 'C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos'
+Traceback (most recent call last):
+  File "C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\src\utils\utils.py", line 18, in save_parquet
+    df.to_parquet(path_parquet)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\core\frame.py", line 3135, in to_parquet
+    return to_parquet(
+        self,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 490, in to_parquet
+    impl.write(
+    ~~~~~~~~~~^
+        df,
+        ^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 199, in write
+    path_or_handle, handles, filesystem = _get_path_or_handle(
+                                          ~~~~~~~~~~~~~~~~~~~^
+        path,
+        ^^^^^
+    ...<3 lines>...
+        is_dir=partition_cols is not None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 141, in _get_path_or_handle
+    handles = get_handle(
+        path_or_handle, mode, is_text=False, storage_options=storage_options
+    )
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\common.py", line 797, in get_handle
+    check_parent_directory(str(handle))
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\common.py", line 656, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos'
+2026-06-30 11:26:01 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 11:26:01 | ERROR    | utils.py:20 | save_parquet() | Error guardando ParquetCannot save file into a non-existent directory: 'C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos'
+Traceback (most recent call last):
+  File "C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\src\utils\utils.py", line 18, in save_parquet
+    df.to_parquet(path_parquet)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\core\frame.py", line 3135, in to_parquet
+    return to_parquet(
+        self,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 490, in to_parquet
+    impl.write(
+    ~~~~~~~~~~^
+        df,
+        ^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 199, in write
+    path_or_handle, handles, filesystem = _get_path_or_handle(
+                                          ~~~~~~~~~~~~~~~~~~~^
+        path,
+        ^^^^^
+    ...<3 lines>...
+        is_dir=partition_cols is not None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 141, in _get_path_or_handle
+    handles = get_handle(
+        path_or_handle, mode, is_text=False, storage_options=storage_options
+    )
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\common.py", line 797, in get_handle
+    check_parent_directory(str(handle))
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\common.py", line 656, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos'
+2026-06-30 11:26:01 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 11:26:01 | ERROR    | utils.py:20 | save_parquet() | Error guardando ParquetCannot save file into a non-existent directory: 'C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos'
+Traceback (most recent call last):
+  File "C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\src\utils\utils.py", line 18, in save_parquet
+    df.to_parquet(path_parquet)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\core\frame.py", line 3135, in to_parquet
+    return to_parquet(
+        self,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 490, in to_parquet
+    impl.write(
+    ~~~~~~~~~~^
+        df,
+        ^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 199, in write
+    path_or_handle, handles, filesystem = _get_path_or_handle(
+                                          ~~~~~~~~~~~~~~~~~~~^
+        path,
+        ^^^^^
+    ...<3 lines>...
+        is_dir=partition_cols is not None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 141, in _get_path_or_handle
+    handles = get_handle(
+        path_or_handle, mode, is_text=False, storage_options=storage_options
+    )
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\common.py", line 797, in get_handle
+    check_parent_directory(str(handle))
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\common.py", line 656, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos'
+2026-06-30 11:26:01 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 11:26:01 | ERROR    | utils.py:20 | save_parquet() | Error guardando ParquetCannot save file into a non-existent directory: 'C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos'
+Traceback (most recent call last):
+  File "C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\src\utils\utils.py", line 18, in save_parquet
+    df.to_parquet(path_parquet)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\core\frame.py", line 3135, in to_parquet
+    return to_parquet(
+        self,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 490, in to_parquet
+    impl.write(
+    ~~~~~~~~~~^
+        df,
+        ^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 199, in write
+    path_or_handle, handles, filesystem = _get_path_or_handle(
+                                          ~~~~~~~~~~~~~~~~~~~^
+        path,
+        ^^^^^
+    ...<3 lines>...
+        is_dir=partition_cols is not None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\parquet.py", line 141, in _get_path_or_handle
+    handles = get_handle(
+        path_or_handle, mode, is_text=False, storage_options=storage_options
+    )
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\common.py", line 797, in get_handle
+    check_parent_directory(str(handle))
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pandas\io\common.py", line 656, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos'
+2026-06-30 11:26:24 | INFO     | utils.py:56 | crear_directorios() | Directorios Base creados exitosamente
+2026-06-30 11:26:52 | INFO     | consolidado_reclamos.py:327 | run() | === Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===
+2026-06-30 11:26:52 | INFO     | consolidado_reclamos.py:331 | run() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 11:26:52 | INFO     | consolidado_reclamos.py:333 | run() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 11:26:52 | INFO     | consolidado_reclamos.py:334 | run() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 11:26:54 | INFO     | consolidado_reclamos.py:341 | run() | Conectado a gr-comercial.usage_logs
+2026-06-30 11:26:54 | INFO     | consolidado_reclamos.py:344 | run() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 11:26:54 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 11:26:55 | INFO     | consolidado_reclamos.py:348 | run() | Generando DataFrames...
+2026-06-30 11:26:55 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 11:26:55 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 11:26:55 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 11:26:55 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 11:26:55 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 11:27:25 | INFO     | consolidado_reclamos.py:327 | run() | === Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===
+2026-06-30 11:27:25 | INFO     | consolidado_reclamos.py:331 | run() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 11:27:25 | INFO     | consolidado_reclamos.py:333 | run() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 11:27:25 | INFO     | consolidado_reclamos.py:334 | run() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 11:27:26 | INFO     | consolidado_reclamos.py:341 | run() | Conectado a gr-comercial.usage_logs
+2026-06-30 11:27:26 | INFO     | consolidado_reclamos.py:344 | run() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 11:27:26 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 11:27:28 | INFO     | consolidado_reclamos.py:348 | run() | Generando DataFrames...
+2026-06-30 11:27:28 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 11:27:28 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 11:27:28 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 11:27:28 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 11:27:28 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 11:46:44 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | === Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===
+2026-06-30 11:46:44 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 11:46:44 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 11:46:44 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 11:46:45 | INFO     | mongo_client.py:19 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 11:46:45 | INFO     | consolidado_reclamos.py:346 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 11:46:45 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 11:46:47 | INFO     | consolidado_reclamos.py:350 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 11:46:47 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 11:46:47 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 11:46:47 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 11:46:47 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 11:46:47 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet
+2026-06-30 11:55:59 | INFO     | consolidado_reclamos.py:327 | crear_resumen_reclamos() | === Iniciando análisis de valor_declarado por mes y clasificación (PRIMER REGISTRO POR OT) ===
+2026-06-30 11:55:59 | INFO     | consolidado_reclamos.py:331 | crear_resumen_reclamos() | Clasificaciones excluidas: n/a, N/A, N/a, n/A
+2026-06-30 11:55:59 | INFO     | consolidado_reclamos.py:333 | crear_resumen_reclamos() | Usuarios excluidos: nriosm@chilexpress.cl, cmella@chilexpress.cl, lduarte@chilexpress.cl, nico@sss.cl, vgallardoe@chilexpress.cl, string, usuario_anonimo
+2026-06-30 11:55:59 | INFO     | consolidado_reclamos.py:334 | crear_resumen_reclamos() | MODO: Solo primer registro clasificado por OT (evita duplicados cuando cambia clasificación)
+2026-06-30 11:56:00 | INFO     | mongo_client.py:30 | get_mongo_client() | Conectado a gr-comercial.usage_logs
+2026-06-30 11:56:00 | INFO     | consolidado_reclamos.py:340 | crear_resumen_reclamos() | Obteniendo datos agrupados por mes y clasificación (primer registro por OT)...
+2026-06-30 11:56:00 | INFO     | consolidado_reclamos.py:45 | obtener_datos_por_mes() | Obteniendo Datos por Mes
+2026-06-30 11:56:02 | INFO     | consolidado_reclamos.py:344 | crear_resumen_reclamos() | Generando DataFrames...
+2026-06-30 11:56:02 | INFO     | consolidado_reclamos.py:235 | generar_dataframes() | Generando Dataframes
+2026-06-30 11:56:02 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\resumen.parquet
+2026-06-30 11:56:02 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\detalle.parquet
+2026-06-30 11:56:02 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\evolucion.parquet
+2026-06-30 11:56:02 | INFO     | utils.py:17 | save_parquet() | Guardando archivo C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\data\reclamos\top_clasificaciones.parquet

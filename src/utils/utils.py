@@ -8,8 +8,11 @@ from config.log_config import logger
 settings = get_settings()
 
 # -------------------------------------------------- #
-def save_parquet(df:pd.DataFrame,file_name:str):
-    path_parquet = Path(settings.data_path, file_name+".parquet")
+def save_parquet(df:pd.DataFrame,file_name:str,path_file:Path|None = None):
+    if path_file is None:
+        path_file = settings.data_path
+
+    path_parquet = Path(path_file, file_name+".parquet")
     try:
         logger.info(f'Guardando archivo {path_parquet}')
         df.to_parquet(path_parquet)
@@ -43,7 +46,8 @@ def crear_directorios() -> tuple[bool,str]:
         for path in (
             get_settings().data_path,
             get_settings().logs_path,
-            get_settings().config_path):
+            get_settings().config_path,
+            get_settings().reclamos_path):
 
             if path.exists():
                 continue
