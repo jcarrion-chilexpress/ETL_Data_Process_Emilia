@@ -27,7 +27,7 @@
                 "sql_create_path": "src/sql/ddl/t_emilia_dashboard_base.sql",
                 "modo": "merge",
                 "partition_by": "CLUSTER BY AUTO",
-                "where":2,
+                "where":3,
                 "primary_key":[
                     "session_id","message_date","primer_timestamp"
                 ],
