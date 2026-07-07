@@ -1,9 +1,13 @@
 ## src/catalog/models.py
 from dataclasses import dataclass
+from typing import NotRequired
 
 @dataclass(slots=True)
 class TableConfig:
     nombre: str
+    origen:str
+    python_path: str | None
+    python_function: str | None
     catalog: str
     schema: str
     query_sql_path: str

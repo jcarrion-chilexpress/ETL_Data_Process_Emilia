@@ -69,13 +69,17 @@ class TableManager:
 
         try:
             if self.spark.catalog.tableExists(table_name):
-                logger.info(f'la tabla {table.full_name} existe')
+                logger.info(f'la tabla {table.full_name} EXISTE !')
                 return True
 
             logger.info(f'la tabla {table.full_name} No existe')
 
             sql = SQLManager.read(table.sql_create_path,
-                                full_name = table.full_name)
+                                full_name = table.full_name
+                                ,constraint_pk = str(table.full_name).replace(".","_")
+                                ,primary_key = ','.join(table.primary_key)
+                                ,partition_by = table.partition_by)
+
             self.create_table(table_name,sql)
             return True
         except Exception as e:
@@ -86,7 +90,8 @@ class TableManager:
     def create_table(self,table_name,sql_create: str):
         logger.info(f"Creando tabla : {table_name}")
         try:
-            self.spark.sql(sql_create)
+            print('\n',sql_create,'\n')
+            # self.spark.sql(sql_create)
             logger.info(f"Tabla : {table_name} creada exitosamente")
         except Exception as e:
             logger.error('Error al creara tabla %s',table_name,e)
@@ -97,29 +102,32 @@ class TableManager:
         if not respond:
             raise ValueError(f'Error al crear tabla {table.full_name}')
 
-        delta = DeltaTable.forName(
-            self.spark,
-            table.full_name)
+        try:
+            delta = DeltaTable.forName(
+                self.spark,
+                table.full_name)
 
-        condicion = " AND ".join(
-            [
-                f"t.{c}=s.{c}"
-                for c in table.primary_key
-            ]
-        )
-
-        (
-            delta.alias("t")
-            .merge(
-                df.alias("s"),
-                condicion
+            condicion = " AND ".join(
+                [
+                    f"t.{c}=s.{c}"
+                    for c in table.primary_key
+                ]
             )
-            .whenMatchedUpdateAll()
-            .whenNotMatchedInsertAll()
-            .execute()
-        )
 
-        logger.info("%s merge OK.",table.full_name)
+            (
+                delta.alias("t")
+                .merge(
+                    df.alias("s"),
+                    condicion
+                )
+                .whenMatchedUpdateAll()
+                .whenNotMatchedInsertAll()
+                .execute()
+            )
+
+            logger.info("%s merge OK.",table.full_name)
+        except Exception as e:
+            logger.exception("Error al hacer Merge: %s",str(e))
 
     # -------------------------------------------------
 

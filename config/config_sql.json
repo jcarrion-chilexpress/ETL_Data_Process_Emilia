@@ -1,36 +1,38 @@
 {
 "tablas": [
             {
-                "nombre": "t_emilia_dashboard_base",
+                "nombre": "t_sentimientos_emilia",
+                "origen":"python",
                 "catalog": "adl_sandbox",
                 "schema": "ext_jcarrion",
-                "query_sql_path": "src/sql/queries/emilia_dashboard_base.sql",
-                "sql_create_path": "src/sql/ddl/emilia_dashboard_base.sql",
+                "python_path": "src.load.orquestador_carga",
+                "python_function":"cargar_datos",
+                "query_sql_path": "src/sql/queries/sentimientos_emilia.sql",
+                "sql_create_path": "src/sql/ddl/sentimientos_emilia.sql",
                 "modo": "merge",
-                "partition_by": null,
+                "partition_by": "CLUSTER BY AUTO",
                 "where":3,
-                "primary_key":[
-                    "session_id","message_date","primer_timestamp"
-                ],
-
+                "primary_key":["session_id","message_date"],
                 "descripcion": "Tabla base Dashboard Emilia"
-
             },
 
             {
-                "nombre": "test_sentimientos_emilia_dashboard",
+                "nombre": "t_emilia_dashboard_base",
+                "origen":"sql",
                 "catalog": "adl_sandbox",
                 "schema": "ext_jcarrion",
-                "query_sql_path": "src/sql/queries/sentimientos_emilia_dashboard.sql",
-                "sql_create_path": "src/sql/ddl/sentimientos_emilia_dashboard.sql",
+                "python_path": "",
+                "python_function":"",
+                "query_sql_path": "src/sql/queries/t_emilia_dashboard_base.sql",
+                "sql_create_path": "src/sql/ddl/t_emilia_dashboard_base.sql",
                 "modo": "merge",
-                "partition_by": "fecha",
-                "where":10,
+                "partition_by": "CLUSTER BY AUTO",
+                "where":2,
                 "primary_key":[
-                    "session_id","message_date"
-                ],                
-                "descripcion": "Resultados del modelo de sentimientos"
-            }
+                    "session_id","message_date","primer_timestamp"
+                ],
+                "descripcion": "Tabla base Dashboard Emilia"
+            }            
         ]
 }
 

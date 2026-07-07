@@ -7,6 +7,7 @@ settings = get_settings()
 
 @lru_cache
 def get_spark(ambiente:str = get_settings().ambiente):
+
     logger.info(f'Creando Sparksession en Env {ambiente}')
     spark = ''
 
@@ -29,10 +30,18 @@ def get_spark(ambiente:str = get_settings().ambiente):
             from pyspark.sql import SparkSession
             spark = SparkSession.builder.getOrCreate()
             logger.info(f'Sparksession {ambiente}, Creada Existosamente !')
+
             return spark
 
     except Exception as e:
         logger.exception(f'Sparksession {ambiente}, con Error:{e}')
         raise RuntimeError(f'No fue posible crear la SparkSession: {e}')
 
+
+# current_user = (
+#     spark.sql("SELECT current_user()")
+#         .first()[0]
+# )
+
+# logger.info(f"Conectado a Databricks como: {current_user}")
 

@@ -440,12 +440,3 @@ def obtener_datos_databricks():
     finally:
         client.close()
 
-
-if __name__ == "__main__":
-    try:
-        data = obtener_datos_databricks()
-        print("Data retrieved successfully:")
-        for row in data:
-            print(row)
-    except Exception as e:
-        print(f"Error retrieving data: {e}")

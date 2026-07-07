@@ -365,5 +365,6 @@ def crear_resumen_reclamos() -> tuple[bool,list] :
         return False,[e]
 
 
-
+def test():
+    return pd.DataFrame()
 

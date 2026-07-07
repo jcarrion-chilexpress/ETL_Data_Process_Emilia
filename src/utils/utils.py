@@ -1,3 +1,4 @@
+## src/utils/utils.py
 import os
 import json
 from typing import Any
@@ -7,9 +8,15 @@ from config.config import get_settings
 from config.log_config import logger
 import unidecode
 import re
-from pyspark.sql.functions import current_timestamp
+from pyspark.sql.functions import expr
 
 settings = get_settings()
+
+# -------------------------------------------------- #
+def get_fecha_carga():
+    return expr("current_timestamp()")
+
+# -------------------------------------------------- #
 def clear_terminal():
     os.system('cls')
 
@@ -180,7 +187,3 @@ def read_json_file(
         return False,{}
 
 # -------------------------------------------------- #
-def get_fecha_carga():
-    fecha = current_timestamp()
-    return fecha
-    

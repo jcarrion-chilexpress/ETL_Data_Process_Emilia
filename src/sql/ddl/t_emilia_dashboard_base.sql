@@ -49,6 +49,13 @@ CREATE TABLE IF NOT EXISTS {full_name} (
 
     estado_reclamo STRING,
 
-    isn DECIMAL(27,2)
+    isn DECIMAL(27,2),
+    fecha_carga TIMESTAMP,
+    
+        CONSTRAINT pk_{constraint_pk}
+        PRIMARY KEY ({primary_key}) NOT ENFORCED
+
+
 )
-USING DELTA;
+USING DELTA
+{partition_by};

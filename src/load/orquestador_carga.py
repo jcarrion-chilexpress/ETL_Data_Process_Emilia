@@ -16,8 +16,10 @@ from src.transform.bot_emilia_sentimientos import pdf_a_dashboard
 
 from config.config import get_settings
 from config.log_config import logger
-from src.utils.utils import (crear_directorios
-                             ,save_parquet)
+from src.catalog.sql_manager import SQLManager
+from src.utils.utils import (crear_directorios)
+## ------------------------------- ##
+from src.infra.databricks_client import cargar_dashboard_base, configurado
 ## ------------------------------- ##
 SALIDA_DEFAULT= get_settings().salida_default
 DATOS_DEFAULT =get_settings().datos_default
@@ -25,16 +27,8 @@ DATOS_DEFAULT =get_settings().datos_default
 
 settings = get_settings()
 
-def cargar_datos(query) -> pd.DataFrame:
-    from src.infra.databricks_client import cargar_dashboard_base, configurado
-    if not configurado():
-        raise SystemExit(
-            "Sin datos locales ni Databricks configurado.\n"
-            "Usa --datos <parquet|csv> o configura .env (DATABRICKS_*)."
-        )
-    return cargar_dashboard_base(query)
-
 def cargar_sentimientos_emilia(pdf) -> pd.DataFrame:
+    logger.info('Gnerando DF con Sent EMilia')    
     if "history" not in pdf.columns:
         logger.error("El dataset debe tener columna history")
         raise ValueError(
@@ -45,7 +39,7 @@ def cargar_sentimientos_emilia(pdf) -> pd.DataFrame:
         [
             {
                 "session_id": r["id"],
-                "fecha": r["date"],
+                "message_date": r["date"],
                 "sentiment": r["sentiment"],
                 "confidence": r["confidence"],
                 "messages": r["messages"],
@@ -56,24 +50,15 @@ def cargar_sentimientos_emilia(pdf) -> pd.DataFrame:
     logger.info("Dataset sentimientos emilia ok")
     return pbi
 
-def orquestador(
-    query: str = "",
-    file_name: str = "",
-    file_save: bool = False
-) -> tuple[bool, pd.DataFrame]:
+def cargar_datos(spark,table) -> pd.DataFrame:
 
-    try:
-        crear_directorios()
-        pdf = cargar_datos(query)
-        if file_name == settings.tabla_sentimientos_emilia:
-            pdf = cargar_sentimientos_emilia(pdf)
-
-        if file_save:
-            save_parquet(pdf,file_name)
-
-        return True, pdf
-
-    except Exception as e:
-        logger.exception(e)
-        return False, pd.DataFrame()
+    logger.info('Cargando datos Sent EMilia')
+    query = SQLManager.read(
+        table.query_sql_path,
+        dias=table.where)
     
+    logger.info(f"desde SQL {table.query_sql_path}")
+
+    dfs = cargar_dashboard_base(query)
+    pdf = cargar_sentimientos_emilia(dfs)
+    return pdf
