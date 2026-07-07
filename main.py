@@ -1,34 +1,43 @@
 ## main.py
-## main.py
 import pandas as pd
 import sys
-from src.flow.flow import (step_get_sqlquery
-                           ,step_generar_pdf
+from src.flow.flow import (step_generar_pdf
                            ,step_save_table
-                           ,step_create_BD_reclamos)
-from config.config import get_settings
-from src.utils.utils import clean_df,read_parquet
-spark =''
+                           ,step_create_BD_reclamos
+                           ,step_generar_dfs_sql)
+from src.utils.utils import (clear_terminal,get_fecha_carga)
+from src.infra.spark import get_spark
+from src.catalog.catalog_manager import get_catalogo_manager
+from src.catalog.sql_manager import SQLManager
+from src.catalog.table_manager import TableManager
+from pyspark.sql.functions import lit
+clear_terminal()
 
+catalog = get_catalogo_manager()
 
 def main():
-    settings = get_settings()
-    step_create_BD_reclamos(spark)
-    # par = read_parquet('reclamos/resumen')
-    # print(par)
+    spark = get_spark()
+    table = catalog.obtener_tabla(
+        "t_emilia_dashboard_base"
+    )
 
-    # file_name = ["emilia_dashboard_base"
-    #              ,"sentimientos_emilia_dashboard"]
-    # for file in file_name:
-    #     success,tabla_sql,query = step_get_sqlquery(file)
-    #     if success:
-    #         success, pdf = step_generar_pdf(query, file, file_save=False)
-        
-            # if success:
-            #     step_save_table(spark, pdf, tabla_sql)
+    sql = SQLManager.read(
+        table.query_sql_path,
+        dias=table.where
+    )
+
+    dfs = spark.sql(sql)
+    dfs = dfs.withColumn('fecha_carga'
+                            ,get_fecha_carga())
+
+    TableManager(spark).save(
+        dfs,
+        table
+    )
 
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        sys.exit(130)
+        sys.exit(40)
+

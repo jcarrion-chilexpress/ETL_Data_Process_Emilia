@@ -10,9 +10,9 @@ mensajes_usuario,
 mensajes_bot,
 tipo_sesion,
 duracion_minutos,
-31.0 as isn
+isn
 from adl_sandbox.ext_jcarrion.t_emilia_dashboard_base as a
 where message_date >= current_date()-{dias}
-
+limit 100
 
 

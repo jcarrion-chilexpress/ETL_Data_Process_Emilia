@@ -1,6 +1,7 @@
+## src/flow/flow.py
 from pathlib import Path
 import pandas as pd
-from src.utils.utils import (read_json_file
+from src.utils.utils import (get_fecha_carga
                              ,read_sql_file
                              ,read_parquet)
 from config.config import get_settings
@@ -9,36 +10,37 @@ from src.transform.consolidado_reclamos import crear_resumen_reclamos
 from src.load.orquestador_carga import (
     orquestador
 )
+from src.catalog.catalog_manager import get_catalogo_manager
 
+from pyspark.sql.functions import lit
+### -------------------------------- ###
 settings = get_settings()
 sanbox = settings.default_sandbox
+### -------------------------------- ###
 
-def step_get_sqlquery(table_name:str):
-    json_file = settings.config_path
-    file_name = table_name
+def step_generar_dfs_sql(spark, table_name:str):
+    try:
+        logger.info(f' Generando DFS de las tabla :{table_name}')
+        catalogo = get_catalogo_manager()
 
-    logger.info(f'Cargando query {json_file}{file_name}')
-    msn, archivo = read_json_file(
-                                json_file,
-                                file_name)
+        tabla = catalogo.obtener_tabla(table_name)
+        sql   = tabla.query_sql_path
+        sql_where = tabla.where
+        msn,sql_query = read_sql_file(file_path=sql
+                                  ,dias=sql_where)
 
-    if not msn:
-        logger.error(f"Error Leyendo json {json_file}")
-        return False,'tabla_sql','query_vacia'
+        if not msn:
+            raise ValueError('Error leyendo SQL FILE')
 
-    logger.info(f'Archivo Json {archivo} cargado exitosamente')
-    sql_path  = archivo["query_sql_path"]
-    filtro    = archivo["filtro"]
-    tabla_sql = archivo["tabla_sql"]
+        dfs = spark.sql(sql_query)
+        dfs = dfs.withColumn('fecha_carga'
+                             ,lit(get_fecha_carga()))
+        return dfs
 
-    success,sql_query = read_sql_file(sql_path
-                                        ,dias=filtro)
-    if not success:
-        logger.error(f'Error Leyendo {sql_query}')
-        return False,'tabla_sql','query_vacia'
+    except Exception as e:
+        logger.error('Error Generando DFS :%s',{e})
+        return spark.sql()
 
-    logger.info(f'Query {table_name} ok')
-    return True,tabla_sql,sql_query
 
 def step_generar_pdf(query: str, file_name: str,file_save=False):
     success, pdf = orquestador(query

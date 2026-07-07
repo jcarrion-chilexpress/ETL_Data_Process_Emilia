@@ -416,7 +416,7 @@ def isn_diario_desde_spark(spark, fecha_desde: str, fecha_hasta: str) -> dict[st
 
 def isn_diario_desde_sql(fecha_desde: str, fecha_hasta: str) -> dict[str, Any]:
     """ISN diario vía cluster Databricks (.env + DatabricksRestClient)."""
-    from src.extract.databricks_client import DatabricksRestClient
+    from src.infra.databricks_client import DatabricksRestClient
 
     sql = ISN_SQL.format(fecha_desde=fecha_desde, fecha_hasta=fecha_hasta)
     client = DatabricksRestClient()

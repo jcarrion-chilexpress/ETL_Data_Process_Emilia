@@ -27,7 +27,7 @@ WITH mensajes AS (
 
   FROM adl_sandbox.nriosm.conversation_session_history as a
     where cast(message_timestamp as date) >= current_date() - {dias}
-    group by all    
+    group by all
 )
 ,encuestas AS (
     SELECT

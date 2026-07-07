@@ -2,18 +2,24 @@
 from pathlib import Path
 from functools import lru_cache
 from typing import Optional
-from pydantic import SecretStr
+from pydantic import SecretStr,Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 class Settings(BaseSettings):
     # ==================================================
+    # Sesion Spark
+    # ==================================================
+    ambiente:str = 'local'
+
+    # ==================================================
     # Databricks (para ejecución local vía REST API)
     # ==================================================
     databricks_server_hostname: str = ""
-    databricks_token: Optional[SecretStr] = None
+    databricks_token:str = ""
     databricks_http_path: str = ""
+    databricks_cluster_id:str = ""
     default_notebook_path: str = ""
 
     default_sandbox:str = "adl_sandbox.ext_jcarrion"
@@ -77,23 +83,6 @@ class Settings(BaseSettings):
 
         except Exception:
             return False
-
-    @property
-    def cluster_id(self) -> Optional[str]:
-        if not self.es_databricks:
-            return None
-        try:
-            from pyspark.sql import SparkSession
-
-            spark = SparkSession.getActiveSession()
-
-            return spark.conf.get(
-                "spark.databricks.clusterUsageTags.clusterId",
-                None,
-            )
-
-        except Exception:
-            return None
 
     @property
     def workspace_url(self) -> Optional[str]:

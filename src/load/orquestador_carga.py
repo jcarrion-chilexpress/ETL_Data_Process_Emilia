@@ -26,7 +26,7 @@ DATOS_DEFAULT =get_settings().datos_default
 settings = get_settings()
 
 def cargar_datos(query) -> pd.DataFrame:
-    from src.extract.databricks_client import cargar_dashboard_base, configurado
+    from src.infra.databricks_client import cargar_dashboard_base, configurado
     if not configurado():
         raise SystemExit(
             "Sin datos locales ni Databricks configurado.\n"

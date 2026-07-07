@@ -8,7 +8,7 @@ from typing import Dict, Any, List
 from collections import defaultdict
 from pymongo import MongoClient
 
-from src.extract.mongo_client import get_mongo_client
+from src.infra.mongo_client import get_mongo_client
 from config.log_config import logger
 from config.config import get_settings
 from src.utils.utils import save_parquet
@@ -245,7 +245,7 @@ def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]
             cantidad = len(ots)
             suma = sum(round(ot.get('valor_declarado', 0),decimales) for ot in ots)
             promedio = suma / cantidad if cantidad > 0 else 0
-            
+
             resumen_data.append({
                 'Mes': mes_key,
                 'Clasificación': clasificacion,
@@ -285,12 +285,12 @@ def generar_dataframes(datos_por_mes: Dict[str, Dict[str, List[Dict[str, Any]]]]
         datos_mes = datos_por_mes[mes_key]
         for clasificacion in sorted(datos_mes.keys()):
             ots = datos_mes[clasificacion]
-            suma = round(sum(ot.get('valor_declarado', 0) for ot in ots),decimales)
+            suma = sum(round(ot.get('valor_declarado', 0),decimales) for ot in ots)
             cantidad = len(ots)
             evolucion_data.append({
                 'Mes': mes_key,
                 'Clasificación': clasificacion,
-                'Suma Total (CLP)': round(float(suma),decimales),
+                'Suma Total (CLP)': round(suma,decimales),
                 'Cantidad': round(cantidad,decimales)
             })
     

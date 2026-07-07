@@ -1,3 +1,4 @@
+import os
 import json
 from typing import Any
 from pathlib import Path
@@ -6,8 +7,11 @@ from config.config import get_settings
 from config.log_config import logger
 import unidecode
 import re
+from pyspark.sql.functions import current_timestamp
 
 settings = get_settings()
+def clear_terminal():
+    os.system('cls')
 
 # -------------------------------------------------- #
 def clean_df(df: pd.DataFrame) -> pd.DataFrame:
@@ -63,6 +67,9 @@ def save_parquet(df:pd.DataFrame
     try:
         logger.info(f'Guardando archivo {path_parquet}')
         df_parquet.to_parquet(path_parquet)
+        print('\n',df_parquet.dtypes
+              ,'\n')
+
         return True,path_parquet
 
     except Exception as e:
@@ -144,36 +151,36 @@ def read_sql_file(file_path: str, **kwargs) -> tuple[bool, str]:
 # -------------------------------------------------- #
 def read_json_file(
     file_path: Path,
-    file_name: str | None = None
-    ) -> tuple[bool, dict[str, Any]]:
+    nombre: str | None = None
+    ) -> tuple[bool, Any]:
     try:
         if not Path(file_path).is_file():
             logger.error("El archivo JSON no existe: %s", file_path)
             return False, {}
 
-        logger.info("El archivo JSON existe: %s", file_path)
+        logger.info("El archivo JSON existe: %s",file_path)
+        with open(file_path, encoding="utf-8") as file:
+            catalogo = json.load(file)
 
-        with open(file_path, "r", encoding="utf-8") as file:
-            data = json.load(file)
-        # Si no se solicita una clave específica,
-        # retorna todo el contenido del JSON.
-        if file_name is None:
-            return True, data
+        ## Si no se solicita una clave específica,
+        ## retorna todo el contenido del JSON.
+        if nombre is None:
+            return True, catalogo
 
-        # Busca la clave solicitada.
-        json_key = data.get(file_name)
-        if json_key is None:
-            logger.warning(
-                "La clave '%s' no existe en el archivo %s",
-                file_name,
-                file_path
-            )
-            return False, {}
-
-        return True, json_key
+        catalogo_result = catalogo.get(nombre) 
+        if catalogo_result is None:
+            logger.warning(f'''No existe: {nombre} dentro del catalogo !''')
+            return False,{}
+        else:
+            logger.info(f'''Catalogo disponible: {nombre} ''')
+            return True,catalogo_result
 
     except Exception as e:
-        logger.exception("Error al leer archivo JSON: %s", e)
-        return False, {}
+        logger.exception('Error al leer archivo JSON: %s',e)
+        return False,{}
 
-
+# -------------------------------------------------- #
+def get_fecha_carga():
+    fecha = current_timestamp()
+    return fecha
+    
