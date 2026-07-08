@@ -6,24 +6,23 @@ ETL_Data_Process_Emilia
 │   └── log_config.py
 ├── data
 │   └── reclamos
-│       ├── detalle.csv
-│       ├── detalle.parquet
-│       ├── evolucion.csv
-│       ├── evolucion.parquet
-│       ├── resumen.csv
-│       ├── resumen.parquet
-│       ├── top_clasificaciones.csv
-│       └── top_clasificaciones.parquet
 ├── docs
 │   ├── estructura.txt
 │   ├── mapear.py
-│   └── README.MD
+│   ├── README.MD
+│   └── sql_ddl.sql
 ├── logs
 │   └── ETL_Data_Process_Emilia.log
 ├── requirements
 │   ├── requirements-databricks.txt
 │   └── requirements-local.txt
 ├── src
+│   ├── catalog
+│   │   ├── catalog_manager.py
+│   │   ├── dataframe_manager.py
+│   │   ├── models.py
+│   │   ├── sql_manager.py
+│   │   └── table_manager.py
 │   ├── extract
 │   │   └── __init__.py
 │   ├── flow
@@ -35,16 +34,17 @@ ETL_Data_Process_Emilia
 │   │   └── spark.py
 │   ├── load
 │   │   ├── __init__.py
-│   │   ├── orquestador_carga.py
-│   │   └── save_delta.py
+│   │   └── load_data_emilia.py
 │   ├── sql
+│   │   ├── ddl
+│   │   │   ├── sentimientos_emilia.sql
+│   │   │   └── t_emilia_dashboard_base.sql
 │   │   └── queries
-│   │       ├── emilia_dashboard_base.sql
-│   │       └── sentimientos_emilia_dashboard.sql
+│   │       ├── sentimientos_emilia.sql
+│   │       └── t_emilia_dashboard_base.sql
 │   ├── transform
 │   │   ├── __init__.py
-│   │   ├── bot_emilia_sentimientos.py
-│   │   └── consolidado_reclamos.py
+│   │   └── bot_emilia_sentimientos.py
 │   ├── utils
 │   │   ├── __init__.py
 │   │   ├── bot_emilia_sentimientos_settings.py
@@ -56,4 +56,3 @@ ETL_Data_Process_Emilia
 ├── .gitignore
 ├── main.ipynb
 └── main.py
-
