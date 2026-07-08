@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     # ==================================================
     # Sesion Spark
     # ==================================================
-    ambiente:str = 'nube'
+    ambiente:str = 'local'
 
     # ==================================================
     # Databricks (para ejecución local vía REST API)

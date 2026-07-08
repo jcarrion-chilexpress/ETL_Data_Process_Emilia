@@ -66,3 +66,4 @@ ERROR_BOT_PATTERNS = [
     r"no logr[eé] entender",
     r"error (al|en) (procesar|consultar)",
     r"fall[oó] (la|el) (consulta|servicio)",]
+

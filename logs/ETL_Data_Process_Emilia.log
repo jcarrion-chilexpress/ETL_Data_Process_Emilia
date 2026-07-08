@@ -6485,3 +6485,159 @@ OSError: Cannot save file into a non-existent directory: 'C:\Users\genesys\Docum
 2026-06-30 19:02:11 | INFO     | utils.py:88 | read_parquet() | Leyendo archivo /Workspace/gdt/sayed/ai/jcarrion/ETL_Data_Process_Emilia/data/reclamos/top_clasificaciones.parquet
 2026-06-30 19:02:11 | INFO     | flow.py:56 | step_save_table() | Creando tabla adl_sandbox.ext_jcarrion.reclamos_top_clasificaciones
 2026-06-30 19:02:13 | INFO     | flow.py:65 | step_save_table() | Tabla adl_sandbox.ext_jcarrion.reclamos_top_clasificaciones creada exitosamente
+2026-07-08 10:14:18 | INFO     | spark.py:10 | get_spark() | Creando Sparksession en Env nube
+2026-07-08 10:14:18 | ERROR    | spark.py:36 | get_spark() | Sparksession nube, con Error:Only remote Spark sessions using Databricks Connect are supported. Use DatabricksSession.builder to create a remote Spark session instead.
+Refer to https://docs.databricks.com/dev-tools/databricks-connect.html on how to configure Databricks Connect.
+Traceback (most recent call last):
+  File "C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\src\infra\spark.py", line 30, in get_spark
+    spark = SparkSession.builder.getOrCreate()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pyspark\sql\session.py", line 547, in getOrCreate
+    raise RuntimeError(
+RuntimeError: Only remote Spark sessions using Databricks Connect are supported. Use DatabricksSession.builder to create a remote Spark session instead.
+Refer to https://docs.databricks.com/dev-tools/databricks-connect.html on how to configure Databricks Connect.
+2026-07-08 10:14:39 | INFO     | spark.py:10 | get_spark() | Creando Sparksession en Env nube
+2026-07-08 10:14:39 | ERROR    | spark.py:36 | get_spark() | Sparksession nube, con Error:Only remote Spark sessions using Databricks Connect are supported. Use DatabricksSession.builder to create a remote Spark session instead.
+Refer to https://docs.databricks.com/dev-tools/databricks-connect.html on how to configure Databricks Connect.
+Traceback (most recent call last):
+  File "C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\src\infra\spark.py", line 30, in get_spark
+    spark = SparkSession.builder.getOrCreate()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\.venv\Lib\site-packages\pyspark\sql\session.py", line 547, in getOrCreate
+    raise RuntimeError(
+RuntimeError: Only remote Spark sessions using Databricks Connect are supported. Use DatabricksSession.builder to create a remote Spark session instead.
+Refer to https://docs.databricks.com/dev-tools/databricks-connect.html on how to configure Databricks Connect.
+2026-07-08 10:15:16 | INFO     | spark.py:10 | get_spark() | Creando Sparksession en Env local
+2026-07-08 10:15:19 | INFO     | spark.py:25 | get_spark() | Sparksession local, Creada Existosamente !
+2026-07-08 10:15:19 | INFO     | utils.py:168 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.json
+2026-07-08 10:15:19 | INFO     | utils.py:182 | read_json_file() | Catalogo disponible: tablas 
+2026-07-08 10:15:19 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de t_emilia_dashboard_base
+2026-07-08 10:15:19 | INFO     | dataframe_manager.py:19 | build() | Generando DataFrame desde sql
+2026-07-08 10:15:19 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/queries/t_emilia_dashboard_base.sql
+2026-07-08 10:15:21 | INFO     | table_manager.py:14 | save() | Guardando adl_sandbox.ext_jcarrion.t_emilia_dashboard_base en modo merge
+2026-07-08 10:15:22 | INFO     | table_manager.py:72 | exists() | la tabla adl_sandbox.ext_jcarrion.t_emilia_dashboard_base EXISTE !
+2026-07-08 10:15:22 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de t_sentimientos_emilia
+2026-07-08 10:15:22 | INFO     | dataframe_manager.py:19 | build() | Generando DataFrame desde python
+2026-07-08 10:15:22 | INFO     | dataframe_manager.py:50 | _from_python() | Ejecutando src.load.orquestador_carga.cargar_datos
+2026-07-08 10:15:22 | INFO     | orquestador_carga.py:55 | cargar_datos() | Cargando datos Sent EMilia
+2026-07-08 10:15:22 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/queries/sentimientos_emilia.sql
+2026-07-08 10:15:22 | INFO     | orquestador_carga.py:60 | cargar_datos() | desde SQL src/sql/queries/sentimientos_emilia.sql
+2026-07-08 10:15:30 | INFO     | orquestador_carga.py:31 | cargar_sentimientos_emilia() | Gnerando DF con Sent EMilia
+2026-07-08 10:15:47 | INFO     | orquestador_carga.py:50 | cargar_sentimientos_emilia() | Dataset sentimientos emilia ok
+2026-07-08 10:15:47 | INFO     | dataframe_manager.py:77 | _normalize_dataframe() | Normalizando DataFrame (DataFrame)
+2026-07-08 10:15:47 | INFO     | dataframe_manager.py:105 | _normalize_dataframe() | Convirtiendo Pandas -> Spark
+2026-07-08 10:15:47 | INFO     | table_manager.py:14 | save() | Guardando adl_sandbox.ext_jcarrion.t_sentimientos_emilia en modo merge
+2026-07-08 10:15:47 | INFO     | table_manager.py:72 | exists() | la tabla adl_sandbox.ext_jcarrion.t_sentimientos_emilia EXISTE !
+2026-07-08 10:16:09 | INFO     | spark.py:10 | get_spark() | Creando Sparksession en Env local
+2026-07-08 10:16:12 | INFO     | spark.py:25 | get_spark() | Sparksession local, Creada Existosamente !
+2026-07-08 10:16:12 | INFO     | utils.py:168 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.json
+2026-07-08 10:16:12 | INFO     | utils.py:182 | read_json_file() | Catalogo disponible: tablas 
+2026-07-08 10:16:12 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de t_emilia_dashboard_base1
+2026-07-08 10:16:57 | INFO     | spark.py:10 | get_spark() | Creando Sparksession en Env local
+2026-07-08 10:17:00 | INFO     | spark.py:25 | get_spark() | Sparksession local, Creada Existosamente !
+2026-07-08 10:17:00 | INFO     | utils.py:168 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.json
+2026-07-08 10:17:00 | INFO     | utils.py:182 | read_json_file() | Catalogo disponible: tablas 
+2026-07-08 10:17:00 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de test_emilia_dashboard_base
+2026-07-08 10:17:27 | INFO     | spark.py:10 | get_spark() | Creando Sparksession en Env local
+2026-07-08 10:17:30 | INFO     | spark.py:25 | get_spark() | Sparksession local, Creada Existosamente !
+2026-07-08 10:17:30 | INFO     | utils.py:168 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.json
+2026-07-08 10:17:30 | INFO     | utils.py:182 | read_json_file() | Catalogo disponible: tablas 
+2026-07-08 10:17:30 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de test_emilia_dashboard_base
+2026-07-08 10:17:30 | INFO     | dataframe_manager.py:19 | build() | Generando DataFrame desde sql
+2026-07-08 10:17:30 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/queries/t_emilia_dashboard_base.sql
+2026-07-08 10:17:31 | INFO     | table_manager.py:14 | save() | Guardando adl_sandbox.ext_jcarrion.test_emilia_dashboard_base en modo merge
+2026-07-08 10:17:31 | INFO     | table_manager.py:75 | exists() | la tabla adl_sandbox.ext_jcarrion.test_emilia_dashboard_base No existe
+2026-07-08 10:17:31 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/ddl/t_emilia_dashboard_base.sql
+2026-07-08 10:17:31 | INFO     | table_manager.py:91 | create_table() | Creando tabla : adl_sandbox.ext_jcarrion.test_emilia_dashboard_base
+2026-07-08 10:17:31 | INFO     | table_manager.py:95 | create_table() | Tabla : adl_sandbox.ext_jcarrion.test_emilia_dashboard_base creada exitosamente
+2026-07-08 10:17:31 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de test_sentimientos_emilia
+2026-07-08 10:17:31 | INFO     | dataframe_manager.py:19 | build() | Generando DataFrame desde python
+2026-07-08 10:17:31 | INFO     | dataframe_manager.py:50 | _from_python() | Ejecutando src.load.orquestador_carga.cargar_datos
+2026-07-08 10:17:31 | INFO     | orquestador_carga.py:55 | cargar_datos() | Cargando datos Sent EMilia
+2026-07-08 10:17:31 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/queries/sentimientos_emilia.sql
+2026-07-08 10:17:31 | INFO     | orquestador_carga.py:60 | cargar_datos() | desde SQL src/sql/queries/sentimientos_emilia.sql
+2026-07-08 10:17:35 | INFO     | orquestador_carga.py:31 | cargar_sentimientos_emilia() | Gnerando DF con Sent EMilia
+2026-07-08 10:17:52 | INFO     | orquestador_carga.py:50 | cargar_sentimientos_emilia() | Dataset sentimientos emilia ok
+2026-07-08 10:17:52 | INFO     | dataframe_manager.py:77 | _normalize_dataframe() | Normalizando DataFrame (DataFrame)
+2026-07-08 10:17:52 | INFO     | dataframe_manager.py:105 | _normalize_dataframe() | Convirtiendo Pandas -> Spark
+2026-07-08 10:17:52 | INFO     | table_manager.py:14 | save() | Guardando adl_sandbox.ext_jcarrion.test_sentimientos_emilia en modo merge
+2026-07-08 10:17:53 | INFO     | table_manager.py:75 | exists() | la tabla adl_sandbox.ext_jcarrion.test_sentimientos_emilia No existe
+2026-07-08 10:17:53 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/ddl/sentimientos_emilia.sql
+2026-07-08 10:17:53 | INFO     | table_manager.py:91 | create_table() | Creando tabla : adl_sandbox.ext_jcarrion.test_sentimientos_emilia
+2026-07-08 10:17:53 | INFO     | table_manager.py:95 | create_table() | Tabla : adl_sandbox.ext_jcarrion.test_sentimientos_emilia creada exitosamente
+2026-07-08 10:19:48 | INFO     | spark.py:10 | get_spark() | Creando Sparksession en Env local
+2026-07-08 10:19:51 | INFO     | spark.py:25 | get_spark() | Sparksession local, Creada Existosamente !
+2026-07-08 10:19:51 | INFO     | utils.py:168 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.json
+2026-07-08 10:19:51 | INFO     | utils.py:182 | read_json_file() | Catalogo disponible: tablas 
+2026-07-08 10:19:51 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de t_emilia_dashboard_base
+2026-07-08 10:19:51 | INFO     | dataframe_manager.py:19 | build() | Generando DataFrame desde sql
+2026-07-08 10:19:51 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/queries/t_emilia_dashboard_base.sql
+2026-07-08 10:19:53 | INFO     | table_manager.py:14 | save() | Guardando adl_sandbox.ext_jcarrion.t_emilia_dashboard_base en modo merge
+2026-07-08 10:19:53 | INFO     | table_manager.py:72 | exists() | la tabla adl_sandbox.ext_jcarrion.t_emilia_dashboard_base EXISTE !
+2026-07-08 10:20:10 | INFO     | table_manager.py:127 | merge() | adl_sandbox.ext_jcarrion.t_emilia_dashboard_base merge OK.
+2026-07-08 10:20:10 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de t_sentimientos_emilia
+2026-07-08 10:20:10 | INFO     | dataframe_manager.py:19 | build() | Generando DataFrame desde python
+2026-07-08 10:20:10 | INFO     | dataframe_manager.py:50 | _from_python() | Ejecutando src.load.orquestador_carga.cargar_datos
+2026-07-08 10:20:10 | INFO     | orquestador_carga.py:55 | cargar_datos() | Cargando datos Sent EMilia
+2026-07-08 10:20:10 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/queries/sentimientos_emilia.sql
+2026-07-08 10:20:10 | INFO     | orquestador_carga.py:60 | cargar_datos() | desde SQL src/sql/queries/sentimientos_emilia.sql
+2026-07-08 10:20:14 | INFO     | orquestador_carga.py:31 | cargar_sentimientos_emilia() | Gnerando DF con Sent EMilia
+2026-07-08 10:20:30 | INFO     | orquestador_carga.py:50 | cargar_sentimientos_emilia() | Dataset sentimientos emilia ok
+2026-07-08 10:20:30 | INFO     | dataframe_manager.py:77 | _normalize_dataframe() | Normalizando DataFrame (DataFrame)
+2026-07-08 10:20:30 | INFO     | dataframe_manager.py:105 | _normalize_dataframe() | Convirtiendo Pandas -> Spark
+2026-07-08 10:20:31 | INFO     | table_manager.py:14 | save() | Guardando adl_sandbox.ext_jcarrion.t_sentimientos_emilia en modo merge
+2026-07-08 10:20:31 | INFO     | table_manager.py:72 | exists() | la tabla adl_sandbox.ext_jcarrion.t_sentimientos_emilia EXISTE !
+2026-07-08 10:20:36 | INFO     | table_manager.py:127 | merge() | adl_sandbox.ext_jcarrion.t_sentimientos_emilia merge OK.
+2026-07-08 10:38:15 | INFO     | spark.py:10 | get_spark() | Creando Sparksession en Env local
+2026-07-08 10:38:18 | INFO     | spark.py:25 | get_spark() | Sparksession local, Creada Existosamente !
+2026-07-08 10:38:18 | INFO     | utils.py:168 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.json
+2026-07-08 10:38:18 | INFO     | utils.py:182 | read_json_file() | Catalogo disponible: tablas 
+2026-07-08 10:38:18 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de t_emilia_dashboard_base
+2026-07-08 10:38:18 | INFO     | dataframe_manager.py:19 | build() | Generando DataFrame desde sql
+2026-07-08 10:38:18 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/queries/t_emilia_dashboard_base.sql
+2026-07-08 10:38:19 | INFO     | table_manager.py:14 | save() | Guardando adl_sandbox.ext_jcarrion.t_emilia_dashboard_base en modo merge
+2026-07-08 10:38:20 | INFO     | table_manager.py:72 | exists() | la tabla adl_sandbox.ext_jcarrion.t_emilia_dashboard_base EXISTE !
+2026-07-08 10:38:37 | INFO     | table_manager.py:127 | merge() | adl_sandbox.ext_jcarrion.t_emilia_dashboard_base merge OK.
+2026-07-08 10:38:37 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de t_sentimientos_emilia
+2026-07-08 10:38:37 | INFO     | dataframe_manager.py:19 | build() | Generando DataFrame desde python
+2026-07-08 10:38:37 | INFO     | dataframe_manager.py:50 | _from_python() | Ejecutando src.load.orquestador_carga.cargar_datos
+2026-07-08 10:39:38 | INFO     | spark.py:10 | get_spark() | Creando Sparksession en Env local
+2026-07-08 10:39:41 | INFO     | spark.py:25 | get_spark() | Sparksession local, Creada Existosamente !
+2026-07-08 10:39:41 | INFO     | utils.py:168 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.json
+2026-07-08 10:39:41 | INFO     | utils.py:182 | read_json_file() | Catalogo disponible: tablas 
+2026-07-08 10:39:41 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de t_sentimientos_emilia
+2026-07-08 10:39:41 | INFO     | dataframe_manager.py:19 | build() | Generando DataFrame desde python
+2026-07-08 10:39:41 | INFO     | dataframe_manager.py:50 | _from_python() | Ejecutando src.load.load_data_emilia.cargar_datos
+2026-07-08 10:39:41 | INFO     | load_data_emilia.py:55 | cargar_datos() | Cargando datos Sent EMilia
+2026-07-08 10:39:41 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/queries/sentimientos_emilia.sql
+2026-07-08 10:39:41 | INFO     | load_data_emilia.py:60 | cargar_datos() | desde SQL src/sql/queries/sentimientos_emilia.sql
+2026-07-08 10:39:58 | INFO     | load_data_emilia.py:31 | cargar_sentimientos_emilia() | Gnerando DF con Sent EMilia
+2026-07-08 10:40:15 | INFO     | load_data_emilia.py:50 | cargar_sentimientos_emilia() | Dataset sentimientos emilia ok
+2026-07-08 10:40:15 | INFO     | dataframe_manager.py:77 | _normalize_dataframe() | Normalizando DataFrame (DataFrame)
+2026-07-08 10:40:15 | INFO     | dataframe_manager.py:105 | _normalize_dataframe() | Convirtiendo Pandas -> Spark
+2026-07-08 10:40:15 | INFO     | table_manager.py:14 | save() | Guardando adl_sandbox.ext_jcarrion.t_sentimientos_emilia en modo merge
+2026-07-08 10:40:15 | INFO     | table_manager.py:72 | exists() | la tabla adl_sandbox.ext_jcarrion.t_sentimientos_emilia EXISTE !
+2026-07-08 10:40:29 | INFO     | table_manager.py:127 | merge() | adl_sandbox.ext_jcarrion.t_sentimientos_emilia merge OK.
+2026-07-08 10:40:50 | INFO     | spark.py:10 | get_spark() | Creando Sparksession en Env local
+2026-07-08 10:40:53 | INFO     | spark.py:25 | get_spark() | Sparksession local, Creada Existosamente !
+2026-07-08 10:40:53 | INFO     | utils.py:168 | read_json_file() | El archivo JSON existe: C:\Users\genesys\Documents\GitHub\ETL_Data_Process_Emilia\config\config_sql.json
+2026-07-08 10:40:53 | INFO     | utils.py:182 | read_json_file() | Catalogo disponible: tablas 
+2026-07-08 10:40:53 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de t_emilia_dashboard_base
+2026-07-08 10:40:53 | INFO     | dataframe_manager.py:19 | build() | Generando DataFrame desde sql
+2026-07-08 10:40:53 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/queries/t_emilia_dashboard_base.sql
+2026-07-08 10:40:54 | INFO     | table_manager.py:14 | save() | Guardando adl_sandbox.ext_jcarrion.t_emilia_dashboard_base en modo merge
+2026-07-08 10:40:54 | INFO     | table_manager.py:72 | exists() | la tabla adl_sandbox.ext_jcarrion.t_emilia_dashboard_base EXISTE !
+2026-07-08 10:41:11 | INFO     | table_manager.py:127 | merge() | adl_sandbox.ext_jcarrion.t_emilia_dashboard_base merge OK.
+2026-07-08 10:41:11 | INFO     | catalog_manager.py:32 | obtener_tabla() | Obteniendo datos de t_sentimientos_emilia
+2026-07-08 10:41:11 | INFO     | dataframe_manager.py:19 | build() | Generando DataFrame desde python
+2026-07-08 10:41:11 | INFO     | dataframe_manager.py:50 | _from_python() | Ejecutando src.load.load_data_emilia.cargar_datos
+2026-07-08 10:41:11 | INFO     | load_data_emilia.py:55 | cargar_datos() | Cargando datos Sent EMilia
+2026-07-08 10:41:11 | INFO     | sql_manager.py:20 | read() | Leyendo SQL src/sql/queries/sentimientos_emilia.sql
+2026-07-08 10:41:11 | INFO     | load_data_emilia.py:60 | cargar_datos() | desde SQL src/sql/queries/sentimientos_emilia.sql
+2026-07-08 10:41:18 | INFO     | load_data_emilia.py:31 | cargar_sentimientos_emilia() | Gnerando DF con Sent EMilia
+2026-07-08 10:41:35 | INFO     | load_data_emilia.py:50 | cargar_sentimientos_emilia() | Dataset sentimientos emilia ok
+2026-07-08 10:41:35 | INFO     | dataframe_manager.py:77 | _normalize_dataframe() | Normalizando DataFrame (DataFrame)
+2026-07-08 10:41:35 | INFO     | dataframe_manager.py:105 | _normalize_dataframe() | Convirtiendo Pandas -> Spark
+2026-07-08 10:41:35 | INFO     | table_manager.py:14 | save() | Guardando adl_sandbox.ext_jcarrion.t_sentimientos_emilia en modo merge
+2026-07-08 10:41:36 | INFO     | table_manager.py:72 | exists() | la tabla adl_sandbox.ext_jcarrion.t_sentimientos_emilia EXISTE !
+2026-07-08 10:41:41 | INFO     | table_manager.py:127 | merge() | adl_sandbox.ext_jcarrion.t_sentimientos_emilia merge OK.

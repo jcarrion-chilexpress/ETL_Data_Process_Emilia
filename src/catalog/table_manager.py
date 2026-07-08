@@ -90,8 +90,7 @@ class TableManager:
     def create_table(self,table_name,sql_create: str):
         logger.info(f"Creando tabla : {table_name}")
         try:
-            print('\n',sql_create,'\n')
-            # self.spark.sql(sql_create)
+            self.spark.sql(sql_create)
             logger.info(f"Tabla : {table_name} creada exitosamente")
         except Exception as e:
             logger.error('Error al creara tabla %s',table_name,e)

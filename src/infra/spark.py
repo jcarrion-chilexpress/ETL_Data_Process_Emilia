@@ -7,7 +7,6 @@ settings = get_settings()
 
 @lru_cache
 def get_spark(ambiente:str = get_settings().ambiente):
-
     logger.info(f'Creando Sparksession en Env {ambiente}')
     spark = ''
 

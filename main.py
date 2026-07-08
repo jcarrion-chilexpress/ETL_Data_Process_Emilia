@@ -1,8 +1,6 @@
 ## main.py
 import sys
-from src.utils.utils import (clear_terminal)
 from src.infra.spark import get_spark
-from src.catalog.catalog_manager import get_catalogo_manager
 from src.flow.flow import step_procesar_tabla
 
 def main():

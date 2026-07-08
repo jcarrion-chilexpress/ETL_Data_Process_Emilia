@@ -23,20 +23,3 @@ def step_procesar_tabla(spark,table_name):
                             table)
     ## --------------------------------- ##
 
-
-# def step_create_BD_reclamos(spark,load_table:bool = False):
-#     logger.info(f'Creando tabla de reclamos')
-#     success,archivos = crear_resumen_reclamos()
-#     path_reclamos = settings.reclamos_path
-
-#     try:
-#         if success:
-#             for archivo in archivos:
-#                 parquet = read_parquet(archivo,path_reclamos)
-#                 nombre_tabla = 'reclamos_'+archivo
-
-#                 if load_table:
-#                     step_save_table(spark,parquet,nombre_tabla)
-#     except Exception as e:
-#         logger.exception(f'Error Creando tabla de reclamos !: {e}')
-
