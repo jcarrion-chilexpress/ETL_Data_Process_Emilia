@@ -20,6 +20,7 @@ from src.catalog.sql_manager import SQLManager
 from src.utils.utils import (crear_directorios)
 ## ------------------------------- ##
 from src.infra.databricks_client import cargar_dashboard_base, configurado
+from src.load.load_conversation_session import unpack_conversations
 ## ------------------------------- ##
 SALIDA_DEFAULT= get_settings().salida_default
 DATOS_DEFAULT =get_settings().datos_default
@@ -27,8 +28,25 @@ DATOS_DEFAULT =get_settings().datos_default
 
 settings = get_settings()
 
+#####################################
+def get_conversations_dataframe(
+    spark,
+    table):
+
+    logger.info('Gnerando DF con desde chilexpress_bot_conversation_sessions')
+    df = spark.table(
+        table.origen_datos)
+
+    logger.info(f'Se genero vista temporal : {table.view_temp}')
+
+    return unpack_conversations(
+        df,
+        dia_desde=table.where,
+    )
+
+
 def cargar_sentimientos_emilia(pdf) -> pd.DataFrame:
-    logger.info('Gnerando DF con Sent EMilia')    
+    logger.info('Gnerando DF con Sent EMilia')
     if "history" not in pdf.columns:
         logger.error("El dataset debe tener columna history")
         raise ValueError(
@@ -51,7 +69,6 @@ def cargar_sentimientos_emilia(pdf) -> pd.DataFrame:
     return pbi
 
 def cargar_datos(spark,table) -> pd.DataFrame:
-
     logger.info('Cargando datos Sent EMilia')
     query = SQLManager.read(
         table.query_sql_path,
@@ -59,6 +76,26 @@ def cargar_datos(spark,table) -> pd.DataFrame:
     
     logger.info(f"desde SQL {table.query_sql_path}")
 
-    dfs = cargar_dashboard_base(query)
+    dfs = cargar_dashboard_base(query)    
     pdf = cargar_sentimientos_emilia(dfs)
     return pdf
+
+
+def cargar_datos_dashboard_base(spark,table) -> pd.DataFrame:
+    logger.info('Cargando datos dashboard base!')
+
+    dfs = get_conversations_dataframe(spark
+                                ,table)
+
+    print(dfs.show(10))
+    dfs.createOrReplaceTempView(table.full_name_view_temp)
+    logger.info(f'Vista Temporal {table.view_temp} Creada !')
+
+    # query = SQLManager.read(
+    #     table.query_sql_path,
+    #     dias=table.where)
+
+    df_temp = spark.sql(f"select * from {table.view_temp}")
+    print('\n',df_temp)
+    logger.info(f"desde SQL {table.query_sql_path}")
+    return pd.DataFrame()

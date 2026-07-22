@@ -6,6 +6,7 @@ from src.infra.spark import get_spark
 from src.catalog.catalog_manager import get_catalogo_manager
 from src.catalog.table_manager import TableManager
 from src.catalog.dataframe_manager import DataFrameManager
+from src.load.load_conversation_session import unpack_conversations
 clear_terminal()
 
 def step_procesar_tabla(spark,table_name):
@@ -22,4 +23,3 @@ def step_procesar_tabla(spark,table_name):
                             dfs,
                             table)
     ## --------------------------------- ##
-

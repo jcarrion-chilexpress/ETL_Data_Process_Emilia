@@ -5,6 +5,8 @@
                 "origen":"python",
                 "catalog": "adl_sandbox",
                 "schema": "ext_jcarrion",
+                "origen_datos": "",
+                "view_temp": "",
                 "python_path": "src.load.load_data_emilia",
                 "python_function":"cargar_datos",
                 "query_sql_path": "src/sql/queries/sentimientos_emilia.sql",
@@ -15,19 +17,20 @@
                 "primary_key":["session_id","message_date"],
                 "descripcion": "Tabla base Dashboard Emilia"
             },
-
             {
                 "nombre": "t_emilia_dashboard_base",
-                "origen":"sql",
+                "origen":"python",
                 "catalog": "adl_sandbox",
                 "schema": "ext_jcarrion",
+                "origen_datos": "adl_gold.mongo.chilexpress_bot_conversation_sessions",
+                "view_temp": "temp_bot_conversation_sessions",
                 "python_path": "",
                 "python_function":"",
                 "query_sql_path": "src/sql/queries/t_emilia_dashboard_base.sql",
                 "sql_create_path": "src/sql/ddl/t_emilia_dashboard_base.sql",
                 "modo": "merge",
                 "partition_by": "CLUSTER BY AUTO",
-                "where":3,
+                "where":10,
                 "primary_key":[
                     "session_id","message_date","primer_timestamp"
                 ],

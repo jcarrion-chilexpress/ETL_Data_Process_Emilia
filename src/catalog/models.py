@@ -10,6 +10,8 @@ class TableConfig:
     python_function: str | None
     catalog: str
     schema: str
+    origen_datos:str
+    view_temp:str
     query_sql_path: str
     sql_create_path: str
     modo: str
@@ -27,3 +29,7 @@ class TableConfig:
     def query_name(self):
         return self.query_sql_path.split('/')[1]
 
+    @property
+    def full_name_view_temp(self):
+
+        return f"{self.catalog}.{self.schema}.{self.view_temp}"
