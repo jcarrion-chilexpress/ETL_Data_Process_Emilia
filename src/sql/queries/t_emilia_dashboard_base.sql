@@ -1,7 +1,7 @@
 WITH mensajes AS (
   SELECT
     session_id,
-    balancer_mongo_id,
+    session_id as balancer_mongo_id,
     role,
     content,
     message_timestamp,
@@ -25,8 +25,9 @@ WITH mensajes AS (
         WHEN lower(content) RLIKE 'hubo un problema al crear tu reclamo en este momento*|no fue posible crear el reclamo porque*'
         THEN 1 ELSE 0 END) AS error_reclamos
 
-  FROM adl_sandbox.nriosm.conversation_session_history as a
+  FROM {view_temp} as a
     where cast(message_timestamp as date) >= current_date() - {dias}
+    and conversation_expires_at is NOT NULL
     group by all
 )
 ,encuestas AS (

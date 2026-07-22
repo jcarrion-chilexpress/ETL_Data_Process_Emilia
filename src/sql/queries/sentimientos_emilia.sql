@@ -13,6 +13,6 @@ duracion_minutos,
 isn
 from adl_sandbox.ext_jcarrion.t_emilia_dashboard_base as a
 where message_date >= current_date()-{dias}
-
+and expires_at is NOT NULL
 
 

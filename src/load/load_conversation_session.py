@@ -57,8 +57,8 @@ def unpack_conversations(
         .select(
             "session_id",
             get_json_object("documento_json_crudo", "$.dialog_state").alias("dialog_state"),
-            get_json_object("documento_json_crudo", "$.updated_at.$date").alias("updated_at"),
-            get_json_object("documento_json_crudo", "$.expires_at.$date").alias("expires_at"),
+            get_json_object("documento_json_crudo", "$.updated_at.$date").alias("conversation_updated_at"),
+            get_json_object("documento_json_crudo", "$.expires_at.$date").alias("conversation_expires_at"),
             from_json(
                 get_json_object("documento_json_crudo", "$.all_history"),
                 history_schema,
@@ -67,15 +67,15 @@ def unpack_conversations(
         .select(
             "session_id",
             "dialog_state",
-            "updated_at",
-            "expires_at",
+            "conversation_updated_at",
+            "conversation_expires_at",
             posexplode("all_history").alias("message_index", "message"),
         )
         .select(
             col("session_id"),
             col("dialog_state"),
-            to_timestamp("updated_at").alias("updated_at"),
-            to_timestamp("expires_at").alias("expires_at"),
+            to_timestamp("conversation_updated_at").alias("conversation_updated_at"),
+            to_timestamp("conversation_expires_at").alias("conversation_expires_at"),
             col("message_index"),
             col("message.role").alias("role"),
             col("message.content").alias("content"),

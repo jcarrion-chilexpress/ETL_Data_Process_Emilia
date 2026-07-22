@@ -1,8 +1,9 @@
 from pathlib import Path
 from config.log_config import logger
+from pyspark.sql import DataFrame
+
 
 class SQLManager:
-
     @staticmethod
     def read(path: str, **kwargs) -> str:
         """
@@ -29,3 +30,7 @@ class SQLManager:
         except Exception as e:
             logger.exception("Error Leyendo SQL %s",e)
             return ""
+
+    @staticmethod
+    def execute(spark, sql: str) -> DataFrame:
+        return spark.sql(sql)

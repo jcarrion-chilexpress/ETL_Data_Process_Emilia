@@ -1,10 +1,6 @@
 ### src/load/export_sentimientos_pbi.py
 """
 Exporta conversaciones clasificadas para Power BI.
-  python export_sentimientos_pbi.py
-  python export_sentimientos_pbi.py --desde 2025-01-01 --hasta 2025-06-15
-  python export_sentimientos_pbi.py --datos data/emilia_dashboard_base.parquet
-  python export_sentimientos_pbi.py --csv
 """
 from __future__ import annotations
 import argparse
@@ -13,7 +9,7 @@ import pandas as pd
 from pathlib import Path
 #####################################
 from src.transform.bot_emilia_sentimientos import pdf_a_dashboard
-
+from pyspark.sql import DataFrame
 from config.config import get_settings
 from config.log_config import logger
 from src.catalog.sql_manager import SQLManager
@@ -29,10 +25,7 @@ DATOS_DEFAULT =get_settings().datos_default
 settings = get_settings()
 
 #####################################
-def get_conversations_dataframe(
-    spark,
-    table):
-
+def get_conversations_dataframe(spark,table):
     logger.info('Gnerando DF con desde chilexpress_bot_conversation_sessions')
     df = spark.table(
         table.origen_datos)
@@ -44,7 +37,7 @@ def get_conversations_dataframe(
         dia_desde=table.where,
     )
 
-
+#####################################
 def cargar_sentimientos_emilia(pdf) -> pd.DataFrame:
     logger.info('Gnerando DF con Sent EMilia')
     if "history" not in pdf.columns:
@@ -68,6 +61,7 @@ def cargar_sentimientos_emilia(pdf) -> pd.DataFrame:
     logger.info("Dataset sentimientos emilia ok")
     return pbi
 
+#####################################
 def cargar_datos(spark,table) -> pd.DataFrame:
     logger.info('Cargando datos Sent EMilia')
     query = SQLManager.read(
@@ -76,26 +70,34 @@ def cargar_datos(spark,table) -> pd.DataFrame:
     
     logger.info(f"desde SQL {table.query_sql_path}")
 
-    dfs = cargar_dashboard_base(query)    
+    dfs = cargar_dashboard_base(query)
     pdf = cargar_sentimientos_emilia(dfs)
     return pdf
 
-
-def cargar_datos_dashboard_base(spark,table) -> pd.DataFrame:
+#####################################
+def cargar_datos_dashboard_base(spark,table) -> DataFrame|None:
     logger.info('Cargando datos dashboard base!')
 
-    dfs = get_conversations_dataframe(spark
-                                ,table)
+    try:
+        dfs = get_conversations_dataframe(spark,table)
+        dfs.createOrReplaceTempView(table.view_temp)
 
-    print(dfs.show(10))
-    dfs.createOrReplaceTempView(table.full_name_view_temp)
-    logger.info(f'Vista Temporal {table.view_temp} Creada !')
+        logger.info(f'Vista Temporal {table.view_temp} Creada !')
+        spark.sql(f"""
+        SELECT COUNT(*)
+        FROM {table.view_temp}
+        """).show()
 
-    # query = SQLManager.read(
-    #     table.query_sql_path,
-    #     dias=table.where)
+        query = SQLManager.read(
+            table.query_sql_path,
+            view_temp= table.view_temp,
+            dias=table.where)
 
-    df_temp = spark.sql(f"select * from {table.view_temp}")
-    print('\n',df_temp)
-    logger.info(f"desde SQL {table.query_sql_path}")
-    return pd.DataFrame()
+        df_temp = SQLManager.execute(spark
+                                    ,sql = query)
+
+        logger.info(f"desde SQL {table.query_sql_path}")
+        return df_temp
+    except Exception as e:
+        logger.exception("Error al Generar Dashoard Base %s",e)
+
