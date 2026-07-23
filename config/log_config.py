@@ -23,9 +23,9 @@ class registroLOG:
 
         if not logger.handlers:
             formatter = logging.Formatter(
-                    '%(asctime)s | %(levelname)-8s | %(filename)s:%(lineno)d | %(funcName)s() | %(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S'
-                )
+                                '%(asctime)s | %(levelname)-8s | %(pathname)s:%(lineno)d | %(funcName)s() | %(message)s',
+                                datefmt='%Y-%m-%d %H:%M:%S'
+                            )
 
             console_handler = logging.StreamHandler()
             console_handler.setFormatter(formatter)
