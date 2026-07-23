@@ -33,11 +33,7 @@ def unpack_conversations(dfs,dia_desde:int = 0):
         df_exploded = (
             dfs
             .select(
-                coalesce(
-                    get_json_object("documento_json_crudo", "$._id"),
-                    get_json_object("documento_json_crudo", "$._id.$oid")
-                    ).alias("session_id"),
-
+                "session_id",
                 # Campos existentes
                 get_json_object("documento_json_crudo", "$.dialog_state").alias("dialog_state"),
                 get_json_object("documento_json_crudo", "$.last_message_time").alias("last_message_time"),

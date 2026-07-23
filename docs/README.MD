@@ -9,78 +9,63 @@ El pipeline integra información proveniente de **MongoDB**, archivos locales y 
 ## Estructura del proyecto
 
 ```text id="3mmc76"
-ETL_Data_Process_Emilia/
-│
-├── config/
+ETL_Data_Process_Emilia
+├── config
 │   ├── __init__.py
 │   ├── config.py
 │   ├── config_sql.json
 │   └── log_config.py
-│
-├── data/
-│   └── reclamos/
-│
-├── docs/
+├── data
+│   └── reclamos
+├── docs
 │   ├── estructura.txt
 │   ├── mapear.py
 │   ├── README.MD
 │   └── sql_ddl.sql
-│
-├── logs/
+├── logs
 │   └── ETL_Data_Process_Emilia.log
-│
-├── requirements/
+├── requirements
 │   ├── requirements-databricks.txt
 │   └── requirements-local.txt
-│
-├── src/
-│   │
-│   ├── catalog/
+├── src
+│   ├── catalog
 │   │   ├── catalog_manager.py
 │   │   ├── dataframe_manager.py
 │   │   ├── models.py
 │   │   ├── sql_manager.py
 │   │   └── table_manager.py
-│   │
-│   ├── extract/
+│   ├── extract
 │   │   └── __init__.py
-│   │
-│   ├── flow/
+│   ├── flow
 │   │   └── flow.py
-│   │
-│   ├── infra/
+│   ├── infra
 │   │   ├── __init__.py
 │   │   ├── databricks_client.py
 │   │   ├── mongo_client.py
 │   │   └── spark.py
-│   │
-│   ├── load/
+│   ├── load
 │   │   ├── __init__.py
+│   │   ├── load_conversation_session.py
 │   │   └── load_data_emilia.py
-│   │
-│   ├── sql/
-│   │   ├── ddl/
+│   ├── sql
+│   │   ├── ddl
 │   │   │   ├── sentimientos_emilia.sql
 │   │   │   └── t_emilia_dashboard_base.sql
-│   │   │
-│   │   └── queries/
+│   │   └── queries
 │   │       ├── sentimientos_emilia.sql
 │   │       └── t_emilia_dashboard_base.sql
-│   │
-│   ├── transform/
+│   ├── transform
 │   │   ├── __init__.py
 │   │   └── bot_emilia_sentimientos.py
-│   │
-│   ├── utils/
+│   ├── utils
 │   │   ├── __init__.py
 │   │   ├── bot_emilia_sentimientos_settings.py
 │   │   └── utils.py
-│   │
 │   └── __init__.py
-│
 ├── .env
 ├── .gitignore
-└── main.ipynb
+├── main.ipynb
+└── main.py
 ```
 
 ---
@@ -108,9 +93,9 @@ El proyecto utiliza una arquitectura modular orientada a un pipeline **ETL/ELT**
    ┌─────────────┐      ┌─────────────┐      ┌─────────────┐
    │   Extract   │      │  Transform  │      │    Load     │
    │             │      │             │      │             │
-   │ MongoDB     │      │ SQL         │      │ Databricks  │
-   │ Databricks  │      │ Python      │      │ Delta       │
-   │ Archivos    │      │ PySpark     │      │ Tables      │
+   │ Databricks  │      │ SQL         │      │ Databricks  │
+   │             │      │ Python      │      │ Delta       │
+   │             │      │ PySpark     │      │ Tables      │
    └──────┬──────┘      └──────┬──────┘      └──────▲──────┘
           │                    │                    │
           └────────────────────┼────────────────────┘
@@ -137,34 +122,18 @@ Los datos son transformados y enriquecidos mediante información de encuestas y 
 ```mermaid id="b4g8gr"
 flowchart TD
 
-    A["conversation_session_history<br/>Origen: MongoDB"]
-
-    B["conversaciones<br/>Tabla Temporal"]
-
-    C["conversaciones_final<br/>Tabla Temporal"]
-
-    D["Análisis de Encuestas<br/>t_captura_api_onemarketer_encuesta_data_cruda"]
-
-    E["Análisis de Conversación<br/>Reclamos"]
-
-    F["t_emilia_dashboard_base<br/>Databricks"]
-
-    G["Análisis de Conversación<br/>Sentimientos"]
-
-    H["t_sentimientos_emilia<br/>Databricks"]
+    A["adl_gold.mongo.chilexpress_bot_conversation_sessions<br/>Origen: Databicks"]
+    B["Temp Conversaciones<br/>Tabla Temporal"]
+    C["t_emilia_dashboard_base<br/>Tabla Final"]
+    D["Temp Dashboard base<br/>Tabla Temporal"]
+    E["t_emilia_dashboard_base<br/>Databricks"]
 
     A --> B
     B --> C
 
     C --> D
-    C --> E
+    D --> E
 
-    D --> F
-    E --> F
-    C --> F
-
-    F --> G
-    G --> H
 ```
 
 ---
@@ -192,6 +161,8 @@ Permite separar la configuración de la lógica de ejecución.
                 "origen":"origen script python o con consulta sql (ejem: python/sql)",
                 "catalog": "Catalogo  Darabricks",
                 "schema": "schema  Darabricks",
+                "origen_datos": "",
+                "view_temp": "tabla temporal si corresponde",
                 "python_path": "Si origen es python debe contner modulo (ejem:src.load.load_data_emilia)",
                 "python_function":"Si origen es python debe tener funcion (ejem: nombre_funcion)",
                 "query_sql_path": " Si origen es SQL de incluir el Path
