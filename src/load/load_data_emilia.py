@@ -1,4 +1,4 @@
-### src/load/export_sentimientos_pbi.py
+### src/load/load_data_emilia.py
 """
 Exporta conversaciones clasificadas para Power BI.
 """
@@ -82,12 +82,8 @@ def cargar_datos_dashboard_base(spark,table) -> DataFrame|None:
         dfs = get_conversations_dataframe(spark,table)
         dfs.createOrReplaceTempView(table.view_temp)
 
-        logger.info(f'Vista Temporal {table.view_temp} Creada !')
-        spark.sql(f"""
-        SELECT COUNT(*)
-        FROM {table.view_temp}
-        """).show()
-
+        Q_datos = dfs.count()
+        logger.info(f'Vista Temporal {table.view_temp} Creada con {Q_datos} Registros!')
         query = SQLManager.read(
             table.query_sql_path,
             view_temp= table.view_temp,
